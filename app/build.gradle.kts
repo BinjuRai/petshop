@@ -1,9 +1,13 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
+    buildFeatures{
+        viewBinding =true
+    }
     namespace = "com.example.mobileapplication"
     compileSdk = 34
 
@@ -42,7 +46,23 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation("org.mockito:mockito-core:3.12.4")
+    androidTestImplementation("org.mockito:mockito-kotlin:3.2.0")
+
+    implementation ("com.google.firebase:firebase-auth:21.0.1")
+    implementation ("com.google.firebase:firebase-core:21.0.1")
+
+    implementation ("com.wdullaer:materialdatetimepicker:4.2.3")
+    implementation ("androidx.appcompat:appcompat:1.2.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
+
+
+
 }

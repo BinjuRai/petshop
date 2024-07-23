@@ -5,26 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".ui.activity.SignupActivity">
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/bgMoapp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_width="419dp"
+        android:layout_height="733dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bgmoapp" />
 
     <TextView
         android:id="@+id/signuptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="142dp"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="188dp"
         android:layout_marginEnd="167dp"
         android:text="Sign up"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signuptext" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextFullName"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="56dp"
@@ -56,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editTextAddress"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="60dp"
@@ -67,10 +69,10 @@
         android:text="Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/editTextPhoneNo"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="56dp"
@@ -81,10 +83,10 @@
         android:text="Phone Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextFullName" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/emailSignup"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="58dp"
@@ -95,10 +97,10 @@
         android:text="E-mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddress" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextPasswordSignup"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="58dp"
@@ -109,17 +111,19 @@
         android:text="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/emailSignup" />
 
     <Button
         android:id="@+id/Signupbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="184dp"
         android:text="Sign Up"
+        app:backgroundTint="@color/Green"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
