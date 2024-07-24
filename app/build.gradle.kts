@@ -56,12 +56,7 @@ dependencies {
     testImplementation("org.mockito:mockito-core:3.12.4")
     androidTestImplementation("org.mockito:mockito-kotlin:3.2.0")
 
-    implementation ("com.google.firebase:firebase-auth:21.0.1")
-    implementation ("com.google.firebase:firebase-core:21.0.1")
 
-    implementation ("com.wdullaer:materialdatetimepicker:4.2.3")
-    implementation ("androidx.appcompat:appcompat:1.2.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
 
 
 

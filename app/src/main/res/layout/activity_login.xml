@@ -10,10 +10,10 @@
     tools:context=".ui.activity.LoginActivity">
 
     <ImageView
+        android:id="@+id/imagebg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imagebg1"
-        android:src="@drawable/bgmoapp"/>
+        android:src="@drawable/bgmoapp" />
 
 
     <EditText
@@ -21,13 +21,13 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="424dp"
+        android:layout_marginTop="368dp"
         android:layout_marginEnd="61dp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,10 +46,11 @@
         app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginbtn"
         android:layout_width="98dp"
         android:layout_height="39dp"
         android:layout_marginStart="139dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="184dp"
         android:layout_marginBottom="60dp"
         android:text="Login"
@@ -57,8 +58,10 @@
         app:backgroundTint="@color/Green"
         app:layout_constraintBottom_toTopOf="@+id/newaccount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgetps"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/forgetps"
@@ -69,22 +72,20 @@
         android:layout_marginBottom="26dp"
         android:text="Forget Password"
         android:textColor="@color/Red"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
 
     <TextView
         android:id="@+id/newaccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="215dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="72dp"
+        android:layout_width="191dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="350dp"
+        android:layout_marginTop="651dp"
         android:text="Create new account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toStartOf="@+id/imagebg1"
+        app:layout_constraintStart_toEndOf="@+id/loginbtn"
+        app:layout_constraintTop_toTopOf="@+id/imagebg1" />
 
     <ImageView
         android:id="@+id/imagejoo"

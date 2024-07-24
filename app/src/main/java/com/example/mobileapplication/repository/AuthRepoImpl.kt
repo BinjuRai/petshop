@@ -6,7 +6,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class AuthRepoImpl(var auth: FirebaseAuth) : AuthRepo {
+class AuthRepoImpl : AuthRepo {
+    var auth : FirebaseAuth = FirebaseAuth.getInstance()
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     var reference: DatabaseReference = database.reference.child("users")
 

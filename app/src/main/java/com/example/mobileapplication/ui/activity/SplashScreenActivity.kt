@@ -10,19 +10,34 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivitySplashScreenBinding
+import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.viewmodel.AuthViewModel
 
 class SplashScreenActivity : AppCompatActivity() {
     lateinit var splashScreenBinding:ActivitySplashScreenBinding
+    lateinit var authViewModel: AuthViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         splashScreenBinding=ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(splashScreenBinding.root)
 
+        var repo = AuthRepoImpl()
+        authViewModel=AuthViewModel(repo)
+
+        var currentUser= authViewModel.getCurrentUser()
+
         Handler(Looper.getMainLooper()).postDelayed({
-            var intent =Intent(this@SplashScreenActivity,LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(currentUser==null){
+                var intent =Intent(this@SplashScreenActivity,LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }else{
+                var intent =Intent(this@SplashScreenActivity,DashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         },3000)
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

@@ -31,7 +31,8 @@ class SignupActivity : AppCompatActivity() {
         setContentView(signupBinding.root)
 
         var repo = AuthRepoImpl()
-        authViewModel=AuthViewModel(repo)
+
+        authViewModel= AuthViewModel(repo)
 
         loadingUtils=LoadingUtils(this)
 
@@ -62,6 +63,7 @@ class SignupActivity : AppCompatActivity() {
             insets
         }
     }
+
 
     private fun addUserToDatabase(userId: String?, userModel: UserModel) {
         authViewModel.addUserToDatabase(userId.toString(),userModel){
