@@ -21,8 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/innerUimage"
+                android:id="@+id/profileImage"
                 android:layout_width="96dp"
                 android:src="@drawable/dummyprofilepic"
                 android:layout_height="96dp"
@@ -38,7 +40,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/innerUimage"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -48,7 +50,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/innerUimage"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
                 app:layout_constraintTop_toBottomOf="@+id/EmailProfile" />
 
             <ProgressBar
@@ -56,10 +58,10 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/innerUimage"
-                app:layout_constraintEnd_toEndOf="@+id/innerUimage"
-                app:layout_constraintStart_toStartOf="@+id/innerUimage"
-                app:layout_constraintTop_toTopOf="@+id/innerUimage" />
+                app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+                app:layout_constraintEnd_toEndOf="@+id/profileImage"
+                app:layout_constraintStart_toStartOf="@+id/profileImage"
+                app:layout_constraintTop_toTopOf="@+id/profileImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

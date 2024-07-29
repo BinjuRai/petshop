@@ -1,5 +1,6 @@
 package com.example.mobileapplication.repository
 
+import android.net.Uri
 import com.example.mobileapplication.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -8,11 +9,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class AuthRepoImpl : AuthRepo {
     var auth : FirebaseAuth = FirebaseAuth.getInstance()
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     var reference: DatabaseReference = database.reference.child("users")
+
+    var storage : FirebaseStorage = FirebaseStorage.getInstance()
+    var storageRef : StorageReference = storage.reference.child("users")
 
     override fun login(username: String, password: String, callback: (Boolean, String) -> Unit) {
         auth.signInWithEmailAndPassword(username, password).addOnCompleteListener {
@@ -105,4 +111,42 @@ class AuthRepoImpl : AuthRepo {
 
         }
     }
+
+    override fun uploadImage(
+        imageName: String,
+        imageUri: Uri,
+        callback: (Boolean, String?, String?) -> Unit
+    ) {
+        var imageReference = storageRef.child(imageName)
+            imageUri.let {url->
+                imageReference.putFile(url).addOnSuccessListener {
+                    imageReference.downloadUrl.addOnSuccessListener {it->
+                        var imageUrl = it.toString()
+                        callback(true,imageUrl,"Upload success")
+                    }
+                }.addOnFailureListener{
+                    callback(false,"","unable to upload")
+                }
+            }
+    }
+
+    override fun updateUser(
+        userID: String,
+        data: MutableMap<String, Any?>,
+        callback: (Boolean, String?) -> Unit
+    ) {
+        data.let { it->
+            reference.child(userID).updateChildren(it).addOnCompleteListener {
+                if(it.isSuccessful){
+                    callback(true,"Successfully updated")
+                }else{
+                    callback(false,"Unable to update data")
+
+                }
+            }
+        }
+    }
 }
+
+
+

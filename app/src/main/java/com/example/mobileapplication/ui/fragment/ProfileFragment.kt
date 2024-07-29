@@ -14,6 +14,9 @@ import com.example.mobileapplication.repository.AuthRepoImpl
 import com.example.mobileapplication.ui.activity.EditProfileActivity
 import com.example.mobileapplication.ui.activity.LoginActivity
 import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 
 class ProfileFragment : Fragment() {
@@ -42,14 +45,28 @@ class ProfileFragment : Fragment() {
         }
         profileBinding.editProfileCard.setOnClickListener{
             var intent=Intent(requireContext(),EditProfileActivity::class.java)
+            intent.putExtra("userData",authViewModel.userData.value)
             startActivity(intent)
         }
         authViewModel.userData.observe(requireActivity()){
             users->
             users.let{
-                if (users?.imageUrl==null || users?.imageUrl.isEmpty()){
+                if (users?.imageUrl==null || users.imageUrl.isEmpty()){
                     profileBinding.profileImage.setImageResource(R.drawable.dummyprofilepic)
                     profileBinding.progressBarImage.visibility=View.GONE
+                }else{
+                    Picasso.get().load(users.imageUrl).into(profileBinding.profileImage,object:Callback{
+                        override fun onSuccess() {
+                            profileBinding.progressBarImage.visibility=View.GONE
+                        }
+
+                        override fun onError(e: Exception?) {
+                            Toast.makeText(requireContext(),e?.message,Toast.LENGTH_LONG).show()
+                        }
+
+                    })
+
+
                 }
                 profileBinding.EmailProfile.text=users?.email.toString()
                 profileBinding.FullNameProfile.text=users?.name.toString()

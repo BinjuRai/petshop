@@ -1,5 +1,6 @@
 package com.example.mobileapplication.repository
 
+import android.net.Uri
 import com.example.mobileapplication.model.UserModel
 import com.google.firebase.auth.FirebaseUser
 
@@ -20,4 +21,8 @@ interface AuthRepo {
         fun getUserFromFirebase(userId: String,callback: (UserModel?,Boolean, String) -> Unit)
      //For logOut
         fun logout(callback: (Boolean, String) -> Unit)
+
+        fun uploadImage(imageName:String, imageUri: Uri, callback: (Boolean, String?,String?) -> Unit)
+
+    fun updateUser(userID:String,data: MutableMap<String,Any?>,callback: (Boolean, String?) -> Unit)
     }

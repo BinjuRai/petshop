@@ -1,5 +1,6 @@
 package com.example.mobileapplication.viewmodel
 
+import android.net.Uri
 import android.service.autofill.UserData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +42,16 @@ class AuthViewModel(var repo: AuthRepo):ViewModel() {
                 }
 
         }
+    }
+
+    fun uploadImage(imageName:String, imageUri: Uri, callback: (Boolean, String?, String?) -> Unit){
+        repo.uploadImage(imageName,imageUri,callback)
+
+    }
+
+    fun updateUser(userID:String,data: MutableMap<String,Any?>,callback: (Boolean, String?) -> Unit){
+        repo.updateUser(userID,data,callback)
+
     }
 
 }
