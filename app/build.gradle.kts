@@ -56,6 +56,8 @@ dependencies {
     testImplementation("org.mockito:mockito-core:3.12.4")
     androidTestImplementation("org.mockito:mockito-kotlin:3.2.0")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 
 
 
