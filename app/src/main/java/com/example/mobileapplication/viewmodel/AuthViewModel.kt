@@ -1,5 +1,7 @@
 package com.example.mobileapplication.viewmodel
 
+import android.service.autofill.UserData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mobileapplication.model.UserModel
 import com.example.mobileapplication.repository.AuthRepo
@@ -26,6 +28,19 @@ class AuthViewModel(var repo: AuthRepo):ViewModel() {
     }
     fun logout(callback: (Boolean, String) -> Unit){
         repo.logout(callback)
+    }
+
+    private var _userData = MutableLiveData<UserModel?>()
+    var userData =MutableLiveData<UserModel?>()
+        get()=_userData
+    fun fetchUserData(userId:String){
+        repo.getUserFromFirebase(userId){
+            userModel,success ,message->
+                if (success) {
+                    _userData.value = userModel
+                }
+
+        }
     }
 
 }

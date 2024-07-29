@@ -17,6 +17,7 @@ interface AuthRepo {
         fun getCurrentUser():FirebaseUser?
 
 
+        fun getUserFromFirebase(userId: String,callback: (UserModel?,Boolean, String) -> Unit)
      //For logOut
         fun logout(callback: (Boolean, String) -> Unit)
     }
