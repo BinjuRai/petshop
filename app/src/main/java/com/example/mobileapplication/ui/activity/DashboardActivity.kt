@@ -1,9 +1,6 @@
 package com.example.mobileapplication.ui.activity
 
-import android.app.DatePickerDialog
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,8 +13,6 @@ import com.example.mobileapplication.databinding.ActivityDashboardBinding
 import com.example.mobileapplication.ui.fragment.CalendarFragment
 import com.example.mobileapplication.ui.fragment.HomeFragment
 import com.example.mobileapplication.ui.fragment.ProfileFragment
-import com.example.mobileapplication.ui.fragment.TimerFragment
-import java.util.Calendar
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -42,7 +37,6 @@ class DashboardActivity : AppCompatActivity() {
                 when (it.itemId) {
                     R.id.menuHome -> replaceFragemnt(HomeFragment())
                     R.id.menuCalander -> replaceFragemnt(CalendarFragment())
-                    R.id.menuTimer -> replaceFragemnt(TimerFragment())
                     R.id.menuProfile -> replaceFragemnt(ProfileFragment())
                     else -> {}
                 }

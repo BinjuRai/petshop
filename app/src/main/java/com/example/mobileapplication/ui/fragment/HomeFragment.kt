@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobileapplication.adapter.DiaryAdapter
+import com.example.mobileapplication.adapter.DiaryEntry
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +33,18 @@ class HomeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = DiaryAdapter(getDiaryEntries())
+    }
+    private fun getDiaryEntries(): List<DiaryEntry> {
+        // Dummy data
+        return listOf(
+            DiaryEntry("2018/7", "Simple to use", "Easy to use operability...", "17:23", R.drawable.sample_image),
+            DiaryEntry("2018/7", "15 color theme color", "There are cute shades...", "17:27", R.drawable.sample_image),
+            DiaryEntry("2018/6", "Pass code is also supported", "Since I want to write a diary obediently...", "17:28", R.drawable.sample_image),
+            DiaryEntry("2018/6", "You can also backup", "Since it can be backed up...", "17:31", R.drawable.sample_image)
+        )
     }
 
     override fun onCreateView(
