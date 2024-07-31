@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/Lightgreen">
+    android:background="@color/white">
 
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="293dp"
-        android:layout_height="408dp"
+        android:layout_width="288dp"
+        android:layout_height="393dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="60dp"
-        android:src="@drawable/piii" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/splashimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/image3"
+        app:layout_constraintEnd_toEndOf="@+id/image3"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/image3"
+        app:layout_constraintTop_toTopOf="@+id/image3" />
 
     <TextView
         android:id="@+id/title3"
@@ -25,12 +40,13 @@
         android:layout_below="@id/image3"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="94dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="89dp"
-        android:text="PROTECT YOUR THOUGHTS"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="20dp"
+        android:text="Furry House"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image3" />
 
     <TextView
         android:id="@+id/description3"
@@ -39,24 +55,29 @@
         android:layout_below="@+id/title3"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="53dp"
-        android:text="jot down your favorite memories in the journal."
-        android:textSize="14sp" />
+        android:layout_marginTop="24dp"
+        android:text="Welcome to pet house"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title3" />
 
     <Button
         android:id="@+id/startBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
-        android:text="START YOUR JOURNEY"
+        android:layout_marginTop="56dp"
+        android:text="LET'S GET STARTED"
         android:textColor="@color/white"
-        app:backgroundTint="@color/Green"/>
+        app:backgroundTint="@color/Green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description3" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

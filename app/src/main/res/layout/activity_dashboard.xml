@@ -5,13 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Lightgreen"
     tools:context=".ui.activity.DashboardActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/bgmoapp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNavigation"

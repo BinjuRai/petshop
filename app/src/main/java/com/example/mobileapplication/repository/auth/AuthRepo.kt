@@ -1,4 +1,4 @@
-package com.example.mobileapplication.repository
+package com.example.mobileapplication.repository.auth
 
 import android.net.Uri
 import com.example.mobileapplication.model.UserModel

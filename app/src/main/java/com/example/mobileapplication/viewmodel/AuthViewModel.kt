@@ -1,11 +1,10 @@
 package com.example.mobileapplication.viewmodel
 
 import android.net.Uri
-import android.service.autofill.UserData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mobileapplication.model.UserModel
-import com.example.mobileapplication.repository.AuthRepo
+import com.example.mobileapplication.repository.auth.AuthRepo
 import com.google.firebase.auth.FirebaseUser
 
 class AuthViewModel(var repo: AuthRepo):ViewModel() {

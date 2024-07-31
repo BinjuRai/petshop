@@ -1,7 +1,7 @@
 package com.example.mobileapplication
 
 
-import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

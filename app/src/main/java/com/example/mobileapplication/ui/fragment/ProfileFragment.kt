@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.FragmentProfileBinding
-import com.example.mobileapplication.repository.AuthRepo
-import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.ui.activity.EditProfileActivity
 import com.example.mobileapplication.ui.activity.LoginActivity
+import com.example.mobileapplication.ui.activity.admin.CategoryDashBoardActivity
+import com.example.mobileapplication.ui.activity.admin.ProductDashboardActivity
 import com.example.mobileapplication.viewmodel.AuthViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -46,6 +47,15 @@ class ProfileFragment : Fragment() {
         profileBinding.editProfileCard.setOnClickListener{
             var intent=Intent(requireContext(),EditProfileActivity::class.java)
             intent.putExtra("userData",authViewModel.userData.value)
+            startActivity(intent)
+        }
+        profileBinding.editcategoryadmin.setOnClickListener{
+            var intent=Intent(requireContext(),CategoryDashBoardActivity::class.java)
+            startActivity(intent)
+        }
+
+        profileBinding.editproductadmin.setOnClickListener{
+            var intent=Intent(requireContext(),ProductDashboardActivity::class.java)
             startActivity(intent)
         }
         authViewModel.userData.observe(requireActivity()){

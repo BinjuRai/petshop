@@ -6,10 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityForgetpasswordBinding
-import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
 
@@ -26,27 +25,25 @@ class ForgetpasswordActivity : AppCompatActivity() {
         var repo = AuthRepoImpl()
         authViewModel=AuthViewModel(repo)
 
-        forgetpasswordBinding.forgetpsbtn.setOnClickListener{
-            loadingUtils= LoadingUtils(this)
+        loadingUtils = LoadingUtils(this)
+        forgetpasswordBinding.forgetpsbtn.setOnClickListener {
+            loadingUtils.showDialog()
+            var email:String = forgetpasswordBinding.forgetpsEmailAddress.text.toString()
 
-            forgetpasswordBinding.forgetpsbtn.setOnClickListener{
-                loadingUtils.showDialog()
-                var email:String=forgetpasswordBinding.forgetpsEmailAddress.text.toString()
-
-                authViewModel.forgetpassword(email){
+            authViewModel.forgetpassword(email){
                     success,message->
-                    if(success){
-                        loadingUtils.dismiss()
-                        Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
-                            finish()
-                    }else{
-                        Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
-                    }
+                if(success){
+                    loadingUtils.dismiss()
+                    Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                    finish()
+                }else{
+                    loadingUtils.dismiss()
+                    Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
 
                 }
             }
-
         }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

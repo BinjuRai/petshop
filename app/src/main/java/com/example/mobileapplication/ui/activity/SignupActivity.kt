@@ -9,13 +9,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivitySignupBinding
 import com.example.mobileapplication.model.UserModel
-import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-
-
 
 
 class SignupActivity : AppCompatActivity() {

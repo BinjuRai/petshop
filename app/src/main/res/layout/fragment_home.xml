@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     tools:context=".ui.fragment.HomeFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="20dp"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+
+                    android:src="@drawable/bannar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ImageView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/darkbrown"
+            android:text="Categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewCategoryUser"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="200dp"/>
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/darkbrown"
+            android:text="Trending Products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewProductUser"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="200dp"/>
+
+    </LinearLayout>
 
 
 
 
-
-</FrameLayout>
+</ScrollView>
 

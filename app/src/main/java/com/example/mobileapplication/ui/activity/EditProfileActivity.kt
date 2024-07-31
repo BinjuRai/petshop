@@ -9,10 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityEditProfileBinding
-import com.example.mobileapplication.databinding.FragmentProfileBinding
 import com.example.mobileapplication.model.UserModel
-import com.example.mobileapplication.repository.AuthRepo
-import com.example.mobileapplication.repository.AuthRepoImpl
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.ImageUtils
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
@@ -34,7 +32,7 @@ var imageUri: Uri?= null
         editProfileBinding=ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(editProfileBinding.root)
 
-        var repo=AuthRepoImpl()
+        var repo= AuthRepoImpl()
         authViewModel=AuthViewModel(repo)
 
         imageUtils= ImageUtils(this)
