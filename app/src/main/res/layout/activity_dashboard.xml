@@ -13,122 +13,28 @@
         android:layout_height="match_parent"
         android:src="@drawable/bgmoapp" />
 
-
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNavigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:menu="@menu/menu_item"
         app:labelVisibilityMode="labeled"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_item" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/btnNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-
-    </FrameLayout>
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar"
-        android:layout_width="414dp"
-        android:layout_height="64dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:id="@+id/frameLayout"
+        app:layout_constraintBottom_toTopOf="@+id/btnNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/contlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/Echoes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Echoes Of Times"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </com.google.android.material.textview.MaterialTextView>
-
-            <ImageView
-                android:id="@+id/logoEcohos"
-                android:layout_width="35dp"
-                android:layout_height="27dp"
-                android:src="@drawable/firstpic"
-                app:layout_constraintBottom_toBottomOf="@id/Echoes"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.964"
-                app:layout_constraintStart_toEndOf="@id/Echoes"
-                app:layout_constraintStart_toStartOf="@id/Echoes"
-                app:layout_constraintTop_toTopOf="@id/Echoes"
-                app:layout_constraintVertical_bias="0.538">
-
-            </ImageView>
+    </FrameLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
-
-
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="401dp"
-            android:layout_height="53dp"
-            android:layout_weight="3"
-            android:drawableStart="@drawable/baseline_search_24"
-            android:hint="@string/Search"
-            android:imeOptions="actionSearch"
-            android:drawablePadding="5dp"
-            android:paddingStart="18dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="18dp"
-            android:paddingBottom="5dp"
-            android:importantForAutofill="no"
-            android:inputType="textFilter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </EditText>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dailynoterecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:layout_behavior ="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="5dp"
-        android:transitionGroup="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="125dp" />
 
 
 
