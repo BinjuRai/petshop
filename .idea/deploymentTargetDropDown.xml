@@ -8,10 +8,10 @@
       <entry key="DashboardActivity">
         <State />
       </entry>
-      <entry key="MainActivity">
+      <entry key="LoginActivity">
         <State />
       </entry>
-      <entry key="SignupActivity">
+      <entry key="MainActivity">
         <State />
       </entry>
       <entry key="SplashScreenActivity">

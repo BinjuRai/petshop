@@ -27,18 +27,22 @@ class SplashScreenActivity : AppCompatActivity() {
 
         var currentUser= authViewModel.getCurrentUser()
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            if(currentUser==null){
-                var intent =Intent(this@SplashScreenActivity,LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+        splashScreenBinding.startBtn.setOnClickListener{
+            Handler(Looper.getMainLooper()).postDelayed({
+                if(currentUser==null){
+                    var intent =Intent(this@SplashScreenActivity,LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
-            }else{
-                var intent =Intent(this@SplashScreenActivity,DashboardActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        },3000)
+                }else{
+                    var intent =Intent(this@SplashScreenActivity,DashboardActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            },3000)
+        }
+
+
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
