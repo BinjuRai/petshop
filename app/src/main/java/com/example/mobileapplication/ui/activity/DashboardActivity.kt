@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityDashboardBinding
 import com.example.mobileapplication.ui.fragment.CartFragment
-import com.example.mobileapplication.ui.fragment.CategoryFragment
 import com.example.mobileapplication.ui.fragment.HomeFragment
 import com.example.mobileapplication.ui.fragment.ProfileFragment
 
