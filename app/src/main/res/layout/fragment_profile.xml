@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ProfileFragment">
 
+    <ImageView
+        android:layout_width="499dp"
+        android:layout_height="749dp"
+        android:src="@drawable/loginbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="120dp"

@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
-import com.example.mobileapplication.adapter.CategoryAdapter
 import com.example.mobileapplication.databinding.ActivityAddCategoryAdminBinding
 import com.example.mobileapplication.model.CategoryModel
 import com.example.mobileapplication.repository.category.CategoryRepoImpl
@@ -55,7 +54,7 @@ class AddCategoryAdminActivity : AppCompatActivity() {
                 uploadImage()
             }
         }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

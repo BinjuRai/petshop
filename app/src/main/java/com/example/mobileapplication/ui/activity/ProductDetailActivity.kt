@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityProductDetailBinding
-import com.example.mobileapplication.databinding.ActivityUpdateProductBinding
 import com.example.mobileapplication.model.CartModel
 import com.example.mobileapplication.model.ProductModel
 import com.example.mobileapplication.repository.auth.AuthRepoImpl
@@ -68,7 +67,7 @@ class ProductDetailActivity : AppCompatActivity() {
             addToCart(products)
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

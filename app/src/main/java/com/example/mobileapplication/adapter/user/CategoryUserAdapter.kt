@@ -10,9 +10,11 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.model.CategoryModel
+import com.example.mobileapplication.ui.activity.CategoryActivity
 import com.example.mobileapplication.ui.activity.admin.UpdateCategoryActivity
 import com.example.mobileapplication.viewmodel.CategoryViewModel
 import com.squareup.picasso.Callback
@@ -25,6 +27,8 @@ class CategoryUserAdapter(var context: Context,var data:ArrayList<CategoryModel>
         var categoryName: TextView = view.findViewById(R.id.categoriTitle)
         var progressBar:ProgressBar=view.findViewById(R.id.pbeachCategory)
         var imageView: CircleImageView = view.findViewById(R.id.categoryImgUser)
+        var layout: ConstraintLayout = view.findViewById(R.id.CategoryCircular)
+
 
     }
 
@@ -51,6 +55,12 @@ class CategoryUserAdapter(var context: Context,var data:ArrayList<CategoryModel>
                 Toast.makeText(context,e?.message.toString(),Toast.LENGTH_SHORT).show()
             }
         })
+
+        holder.layout.setOnClickListener{
+            var intent=Intent(context,CategoryActivity::class.java)
+            intent.putExtra("category",data[position])
+            context.startActivity(intent)
+        }
 
 
 

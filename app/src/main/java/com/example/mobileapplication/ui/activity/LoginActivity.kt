@@ -30,8 +30,8 @@ class LoginActivity : AppCompatActivity() {
 
         loginBinding.loginbtn.setOnClickListener{
             loadingUtils.showDialog()
-            var email:String=loginBinding.EmailAddress.text.toString()
-            var password:String=loginBinding.Password.text.toString()
+            var email:String=loginBinding.EmailAddressLogin.text.toString()
+            var password:String=loginBinding.PasswordLogin.text.toString()
 
 
             authViewModel.login(email,password){
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

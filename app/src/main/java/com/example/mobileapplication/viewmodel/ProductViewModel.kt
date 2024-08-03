@@ -53,4 +53,23 @@ class ProductViewModel (var repo : ProductRepo) : ViewModel() {
             }
         }
     }
+
+    private var _productByCategoryData = MutableLiveData<List<ProductModel>?>()
+    var productByCategoryData = MutableLiveData<List<ProductModel>?>()
+        get() = _productByCategoryData
+
+
+    private var _loadingState2 = MutableLiveData<Boolean>()
+    var loadingState2 = MutableLiveData<Boolean>()
+        get() = _loadingState2
+
+    fun getProductByCategory(categoryName:String) {
+        _loadingState2.value = true
+        repo.getProductByCategory(categoryName) { productList, success, message ->
+            if (productList != null) {
+                _loadingState2.value = false
+                _productData.value = productList
+            }
+        }
+    }
 }

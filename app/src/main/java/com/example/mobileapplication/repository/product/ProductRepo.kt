@@ -15,4 +15,5 @@ interface ProductRepo {
     fun deleteImage(imageName:String,callback: (Boolean, String?) -> Unit)
 
     fun getAllProduct(callback: (List<ProductModel>?, Boolean, String?) -> Unit)
+    fun getProductByCategory(categoryName:String,callback: (List<ProductModel>?, Boolean, String?) -> Unit)
 }

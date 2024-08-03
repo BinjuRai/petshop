@@ -8,25 +8,25 @@ import com.example.mobileapplication.repository.auth.AuthRepo
 import com.google.firebase.auth.FirebaseUser
 
 class AuthViewModel(var repo: AuthRepo):ViewModel() {
-    fun login(username: String,password:String,callback:(Boolean,String)->Unit){
+    fun login(username: String,password:String,callback:(Boolean,String?)->Unit){
          repo.login(username,password, callback)
     }
     fun signup(username: String,password:String,callback:(Boolean,String?,String?)->Unit){
         repo.signup(username, password, callback)
 
     }
-    fun addUserToDatabase(userId:String, userModel: UserModel, callback: (Boolean, String) -> Unit){
+    fun addUserToDatabase(userId:String, userModel: UserModel, callback: (Boolean, String?) -> Unit){
         repo.addUserToDatabase(userId, userModel, callback)
 
     }
     fun getCurrentUser(): FirebaseUser? {
        return repo.getCurrentUser()
     }
-    fun forgetpassword(email:String,callback: (Boolean,String) -> Unit){
+    fun forgetpassword(email:String,callback: (Boolean,String?) -> Unit){
         repo.forgetpassword( email, callback)
 
     }
-    fun logout(callback: (Boolean, String) -> Unit){
+    fun logout(callback: (Boolean, String?) -> Unit){
         repo.logout(callback)
     }
 

@@ -18,4 +18,6 @@ interface CategoryRepo {
 
     fun getAllCategory(callback: (List<CategoryModel>?,Boolean, String?) -> Unit)
 
+
+
 }

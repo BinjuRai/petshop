@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var categoryRepo=CategoryRepoImpl()
         categoryViewModel= CategoryViewModel(categoryRepo)
         categoryViewModel.getAllCategory()
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
         var productRepo=ProductRepoImpl()
         productViewModel=ProductViewModel(productRepo)
         productViewModel.getAllProduct()
+
 
         productUserAdapter= ProductUserAdapter(
             requireContext(),
@@ -68,6 +70,7 @@ class HomeFragment : Fragment() {
                 categoryUserAdapter.updateData(it)
             }
         }
+
         homeBinding.recycleViewCategoryUser.apply {
             layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             adapter=categoryUserAdapter

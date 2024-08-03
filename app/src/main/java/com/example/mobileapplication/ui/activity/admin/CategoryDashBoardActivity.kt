@@ -1,10 +1,8 @@
 package com.example.mobileapplication.ui.activity.admin
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.adapter.CategoryAdapter
 import com.example.mobileapplication.databinding.ActivityCategoryDashBoardBinding
-import com.example.mobileapplication.model.CategoryModel
 import com.example.mobileapplication.repository.category.CategoryRepoImpl
-import com.example.mobileapplication.utils.ImageUtils
-import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.CategoryViewModel
 
 class CategoryDashBoardActivity : AppCompatActivity() {
@@ -95,7 +90,7 @@ class CategoryDashBoardActivity : AppCompatActivity() {
         }).attachToRecyclerView(categoryDashBoardBinding.categoryRecycleView)
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

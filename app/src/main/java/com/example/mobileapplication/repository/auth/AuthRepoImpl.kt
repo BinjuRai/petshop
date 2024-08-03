@@ -20,7 +20,7 @@ class AuthRepoImpl : AuthRepo {
     var storage : FirebaseStorage = FirebaseStorage.getInstance()
     var storageRef : StorageReference = storage.reference.child("users")
 
-    override fun login(username: String, password: String, callback: (Boolean, String) -> Unit) {
+    override fun login(username: String, password: String, callback: (Boolean, String?) -> Unit) {
         auth.signInWithEmailAndPassword(username, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 callback(true, "Login successful")
@@ -53,7 +53,7 @@ class AuthRepoImpl : AuthRepo {
     override fun addUserToDatabase(
         userId: String,
         userModel: UserModel,
-        callback: (Boolean, String) -> Unit
+        callback: (Boolean, String?) -> Unit
     ) {
         userModel.id = userId
         reference.child(userId).setValue(userModel).addOnCompleteListener {
@@ -66,7 +66,7 @@ class AuthRepoImpl : AuthRepo {
         }
     }
 
-    override fun forgetpassword(email: String, callback: (Boolean, String) -> Unit) {
+    override fun forgetpassword(email: String, callback: (Boolean, String?) -> Unit) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
                 callback(true, "Reset mail sent to $email",)
@@ -83,7 +83,7 @@ class AuthRepoImpl : AuthRepo {
 
     override fun getUserFromFirebase(
         userId: String,
-        callback: (UserModel?, Boolean, String) -> Unit
+        callback: (UserModel?, Boolean, String?) -> Unit
     ) {
         reference.child(userId).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -100,7 +100,7 @@ class AuthRepoImpl : AuthRepo {
         })
     }
 
-    override fun logout(callback: (Boolean, String) -> Unit) {
+    override fun logout(callback: (Boolean, String?) -> Unit) {
         try {
             auth.signOut()
             callback(true, "Logout successful")

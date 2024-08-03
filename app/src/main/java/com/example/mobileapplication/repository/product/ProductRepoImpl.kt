@@ -1,6 +1,7 @@
 package com.example.mobileapplication.repository.product
 
 import android.net.Uri
+import com.example.mobileapplication.model.CartModel
 import com.example.mobileapplication.model.ProductModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -106,6 +107,29 @@ class ProductRepoImpl: ProductRepo {
             override fun onCancelled(error: DatabaseError) {
                 callback(null,false,"${error.message}")
             }
+        })
+    }
+
+    override fun getProductByCategory(categoryName:String,callback: (List<ProductModel>?, Boolean, String?) -> Unit) {
+
+
+        var query= reference.orderByChild("categoryName").equalTo(categoryName)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var productList = mutableListOf<ProductModel>()
+                for (eachCategory in snapshot.children) {
+                    var products = eachCategory.getValue(ProductModel::class.java)
+                    if (products != null) {
+                        productList.add(products)
+                    }
+                }
+                callback(productList, true, "Data fetched success")
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+                callback(null,false,"${error.message}")
+            }
+
         })
     }
 }
