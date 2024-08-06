@@ -18,8 +18,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class CartAdapter(var context: Context,var data:ArrayList<CartModel>,var cartViewModel: CartViewModel):
-RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
+class CartAdapter(var context: Context,var data:ArrayList<CartModel>,var cartViewModel: CartViewModel):RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
     class CartViewHolder(view: View):RecyclerView.ViewHolder(view){
         var cartId: TextView = view.findViewById(R.id.IDCart)

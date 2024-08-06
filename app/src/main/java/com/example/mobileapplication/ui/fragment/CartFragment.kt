@@ -22,15 +22,18 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        cartBinding=FragmentCartBinding.inflate(inflater,container,false)
+        cartBinding = FragmentCartBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        return cartBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         var repo=CartRepoImpl()
-            cartViewModel=CartViewModel(repo)
+
+        cartViewModel=CartViewModel(repo)
         cartViewModel.getCartByUserID()
 
         cartAdapter =CartAdapter(
@@ -61,11 +64,10 @@ class CartFragment : Fragment() {
             }
         }
 
-        cartBinding.recyclerViewCartDash.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = cartAdapter
 
+        cartBinding.recyclerViewCartDash.apply {
+            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            adapter=cartAdapter
         }
     }
-
 }

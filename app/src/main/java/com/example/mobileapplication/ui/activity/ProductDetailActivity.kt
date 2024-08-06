@@ -31,6 +31,7 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(productDetailBinding.root)
 
        setSupportActionBar(productDetailBinding.toolBarDetail)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title="Furry's Details"
 
@@ -67,7 +68,7 @@ class ProductDetailActivity : AppCompatActivity() {
             addToCart(products)
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -77,8 +78,11 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun addToCart(products: ProductModel?) {
         loadingUtils.showDialog()
         var currentUser= authViewModel.getCurrentUser()
-        var cartModel=CartModel("",products?.id.toString(),products?.price.toString().toInt(),
-            products?.imageUrl.toString(),products?.productName.toString(),quantity,
+        var cartModel=CartModel("",products?.id.toString(),
+            products?.price.toString().toInt(),
+            products?.imageUrl.toString(),
+            products?.productName.toString(),
+            quantity,
             currentUser?.uid.toString())
 
         cartViewModel.addCart(cartModel){

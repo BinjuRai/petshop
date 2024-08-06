@@ -90,7 +90,7 @@ class CategoryDashBoardActivity : AppCompatActivity() {
         }).attachToRecyclerView(categoryDashBoardBinding.categoryRecycleView)
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.LoginPage)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
