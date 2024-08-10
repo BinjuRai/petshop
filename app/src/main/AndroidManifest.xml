@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.fragment.sensorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.NotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.CategoryActivity"
             android:exported="false" />

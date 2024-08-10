@@ -8,17 +8,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.admin.ProductDashboardActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarDetailProductdetails"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/Lightgreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
+        android:layout_height="700dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarDetailProductdetails"
         tools:listitem="@layout/sample_category_admin" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

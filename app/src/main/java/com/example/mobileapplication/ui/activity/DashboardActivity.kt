@@ -13,10 +13,12 @@ import com.example.mobileapplication.databinding.ActivityDashboardBinding
 import com.example.mobileapplication.ui.fragment.CartFragment
 import com.example.mobileapplication.ui.fragment.HomeFragment
 import com.example.mobileapplication.ui.fragment.ProfileFragment
+import com.example.mobileapplication.ui.fragment.sensorActivity
 
 class DashboardActivity : AppCompatActivity() {
 
     lateinit var dashboardBinding: ActivityDashboardBinding
+//    private lateinit var accelerometerHandler: sensorActivity.AccelerometerHandler
 
     private fun replaceFragemnt(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
@@ -49,6 +51,10 @@ class DashboardActivity : AppCompatActivity() {
                 insets
             }
         }
+    override fun onDestroy() {
+        super.onDestroy()
+//        accelerometerHandler.cleanup()
+    }
 
 
 }

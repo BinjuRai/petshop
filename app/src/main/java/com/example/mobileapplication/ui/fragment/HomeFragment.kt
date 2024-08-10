@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         homeBinding=FragmentHomeBinding.inflate(inflater,container,false)
         return homeBinding.root
-        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

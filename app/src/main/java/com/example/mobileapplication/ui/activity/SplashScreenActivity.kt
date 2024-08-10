@@ -11,24 +11,31 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivitySplashScreenBinding
 import com.example.mobileapplication.repository.auth.AuthRepoImpl
+import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class SplashScreenActivity : AppCompatActivity() {
     lateinit var splashScreenBinding:ActivitySplashScreenBinding
     lateinit var authViewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         splashScreenBinding=ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(splashScreenBinding.root)
 
-        var repo = AuthRepoImpl()
+        var repo = AuthRepoImpl(FirebaseAuth.getInstance(), )
         authViewModel=AuthViewModel(repo)
 
         var currentUser= authViewModel.getCurrentUser()
 
         splashScreenBinding.startBtn.setOnClickListener{
+
             Handler(Looper.getMainLooper()).postDelayed({
+
                 if(currentUser==null){
                     var intent =Intent(this@SplashScreenActivity,LoginActivity::class.java)
                     startActivity(intent)

@@ -27,6 +27,10 @@ class CategoryDashBoardActivity : AppCompatActivity() {
         categoryDashBoardBinding = ActivityCategoryDashBoardBinding.inflate(layoutInflater)
         setContentView(categoryDashBoardBinding.root)
 
+        setSupportActionBar(categoryDashBoardBinding.toolBarDetailCategorydetails)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title="Categories Details"
+
         var repo = CategoryRepoImpl()
         categoryViewModel = CategoryViewModel(repo)
 

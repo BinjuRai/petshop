@@ -12,8 +12,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class AuthRepoImpl : AuthRepo {
-    var auth : FirebaseAuth = FirebaseAuth.getInstance()
+class AuthRepoImpl(var auth: FirebaseAuth,) : AuthRepo {
+//    var auth : FirebaseAuth = FirebaseAuth.getInstance()
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     var reference: DatabaseReference = database.reference.child("users")
 
@@ -66,16 +66,16 @@ class AuthRepoImpl : AuthRepo {
         }
     }
 
-    override fun forgetpassword(email: String, callback: (Boolean, String?) -> Unit) {
-        auth.sendPasswordResetEmail(email).addOnCompleteListener {
-            if (it.isSuccessful) {
-                callback(true, "Reset mail sent to $email",)
-            } else {
-                callback(false, "Unable to reset password")
-
-            }
-        }
-    }
+//    override fun forgetpassword(email: String, callback: (Boolean, String?) -> Unit) {
+//        auth.sendPasswordResetEmail(email).addOnCompleteListener {
+//            if (it.isSuccessful) {
+//                callback(true, "Reset mail sent to $email",)
+//            } else {
+//                callback(false, "Unable to reset password")
+//
+//            }
+//        }
+//    }
 
     override fun getCurrentUser(): FirebaseUser? {
         return auth.currentUser

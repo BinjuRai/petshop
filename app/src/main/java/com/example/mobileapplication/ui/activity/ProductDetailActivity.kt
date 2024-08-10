@@ -16,6 +16,9 @@ import com.example.mobileapplication.repository.cart.CartRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
 import com.example.mobileapplication.viewmodel.CartViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -30,20 +33,20 @@ class ProductDetailActivity : AppCompatActivity() {
         productDetailBinding=ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(productDetailBinding.root)
 
-       setSupportActionBar(productDetailBinding.toolBarDetail)
-
+        setSupportActionBar(productDetailBinding.toolBarDetail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title="Furry's Details"
+
 
         var cartrepo =CartRepoImpl()
         cartViewModel= CartViewModel(cartrepo)
 
-        var authrepo =AuthRepoImpl()
+        var authrepo =AuthRepoImpl(FirebaseAuth.getInstance(), )
         authViewModel= AuthViewModel(authrepo)
 
         loadingUtils= LoadingUtils(this)
 
-        var products: ProductModel? =intent.getParcelableExtra("products")
+        var products: ProductModel? =intent.getParcelableExtra("product")
+        title= products?.productName
         productDetailBinding.imgNameDetail.text=products?.productName
         productDetailBinding.imgDescdetail.text=products?.description
         productDetailBinding.imgPricedetail.text=products?.price.toString()

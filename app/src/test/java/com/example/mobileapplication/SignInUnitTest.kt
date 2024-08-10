@@ -1,10 +1,8 @@
 package com.example.mobileapplication
 
-
-import com.example.mobileapplication.repository.auth.AuthRepoImpl
+import com.example.mobileapplication.repository.ForegetRepoImpl
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -17,33 +15,34 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
-
 class AuthUnitTest {
     @Mock
     private lateinit var mockAuth: FirebaseAuth
 
-    @Mock
-    private lateinit var mockTask: Task<AuthResult>
 
-    private lateinit var userRepository: AuthRepoImpl
+
+    @Mock
+    private lateinit var mockTask: Task<Void>
+
+    private lateinit var forgetRepo: ForegetRepoImpl
 
     @Captor
-    private lateinit var captor: ArgumentCaptor<OnCompleteListener<AuthResult>>
+    private lateinit var captor: ArgumentCaptor<OnCompleteListener<Void>>
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        userRepository = AuthRepoImpl(mockAuth)
+        forgetRepo = ForegetRepoImpl(mockAuth)
     }
+
     @Test
     fun testRegister_Successful() {
         val email = "test@example.com"
-        val password = "testPassword"
         var expectedResult = "Initial Value" // Define the initial value
 
         // Mocking task to simulate successful registration
         `when`(mockTask.isSuccessful).thenReturn(true)
-        `when`(mockAuth.createUserWithEmailAndPassword(any(), any()))
+        `when`(mockAuth.sendPasswordResetEmail(any()))
             .thenReturn(mockTask)
 
         // Define a callback that updates the expectedResult
@@ -52,12 +51,12 @@ class AuthUnitTest {
         }
 
         // Call the function under test
-        userRepository.register(email, password, callback)
+        forgetRepo.forgetpassword(email,  callback)
 
         verify(mockTask).addOnCompleteListener(captor.capture())
         captor.value.onComplete(mockTask)
 
         // Assert the result
-        assertEquals("Registration Successful", expectedResult)
+        assertEquals("Reset mail sent to $email", expectedResult)
     }
 }

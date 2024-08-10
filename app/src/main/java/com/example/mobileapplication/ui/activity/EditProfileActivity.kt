@@ -14,6 +14,9 @@ import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.ImageUtils
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import java.util.UUID
 
@@ -32,7 +35,7 @@ lateinit var loadingUtils: LoadingUtils
         editProfileBinding=ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(editProfileBinding.root)
 
-        var repo= AuthRepoImpl()
+        var repo= AuthRepoImpl(FirebaseAuth.getInstance())
         authViewModel=AuthViewModel(repo)
         loadingUtils = LoadingUtils(this)
 

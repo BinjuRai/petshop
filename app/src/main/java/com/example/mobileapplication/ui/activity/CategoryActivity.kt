@@ -28,7 +28,8 @@ class CategoryActivity : AppCompatActivity() {
         setContentView(categoryBinding.root)
 
         setSupportActionBar(categoryBinding.toolBarCategory)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
 
         var repo = ProductRepoImpl()

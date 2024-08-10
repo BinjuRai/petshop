@@ -8,13 +8,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityForgetpasswordBinding
+import com.example.mobileapplication.repository.ForegetRepoImpl
+import com.example.mobileapplication.repository.ForgetRepo
 import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.viewmodel.ForgetViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class ForgetpasswordActivity : AppCompatActivity() {
     lateinit var forgetpasswordBinding: ActivityForgetpasswordBinding
-    lateinit var authViewModel: AuthViewModel
+    lateinit var forgetViewModel: ForgetViewModel
     lateinit var loadingUtils: LoadingUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +28,15 @@ class ForgetpasswordActivity : AppCompatActivity() {
         forgetpasswordBinding=ActivityForgetpasswordBinding.inflate(layoutInflater)
         setContentView(forgetpasswordBinding.root)
 
-        var repo = AuthRepoImpl()
-        authViewModel=AuthViewModel(repo)
+        var repo = ForegetRepoImpl(FirebaseAuth.getInstance(),)
+        forgetViewModel=ForgetViewModel(repo)
 
         loadingUtils = LoadingUtils(this)
         forgetpasswordBinding.forgetpsbtn.setOnClickListener {
             loadingUtils.showDialog()
             var email:String = forgetpasswordBinding.forgetpsEmailAddress.text.toString()
 
-            authViewModel.forgetpassword(email){
+            forgetViewModel.forgetpassword(email){
                     success,message->
                 if(success){
                     loadingUtils.dismiss()

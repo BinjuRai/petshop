@@ -13,7 +13,7 @@ interface AuthRepo {
         fun addUserToDatabase(userId:String,userModel: UserModel,callback: (Boolean, String?) -> Unit)
 
      //Forget password
-        fun forgetpassword(email:String,callback: (Boolean, String?) -> Unit)
+//        fun forgetpassword(email:String,callback: (Boolean, String?) -> Unit)
 
         fun getCurrentUser():FirebaseUser?
 

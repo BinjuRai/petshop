@@ -45,7 +45,7 @@ class CartAdapter(var context: Context,var data:ArrayList<CartModel>,var cartVie
     override fun getItemCount(): Int {
         return data.size
     }
-    override fun onBindViewHolder(holder: CartAdapter.CartViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.cartId.text = "Cart ID:" + data[position].cartid
         holder.productName.text = data[position].productName
         holder.productPrice.text = "RS." + data[position].productPrice.toString()

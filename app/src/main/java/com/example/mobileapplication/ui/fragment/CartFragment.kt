@@ -66,7 +66,7 @@ class CartFragment : Fragment() {
 
 
         cartBinding.recyclerViewCartDash.apply {
-            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            layoutManager=LinearLayoutManager(requireContext())
             adapter=cartAdapter
         }
     }

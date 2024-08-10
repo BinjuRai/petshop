@@ -1,5 +1,6 @@
 package com.example.mobileapplication.repository.cart
 
+import android.util.Log
 import com.example.mobileapplication.model.CartModel
 import com.example.mobileapplication.model.CategoryModel
 import com.google.firebase.auth.FirebaseAuth
@@ -48,7 +49,10 @@ class CartRepoImpl: CartRepo {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var cartList = mutableListOf<CartModel>()
                 for (eachCart in snapshot.children) {
+
                     var order = eachCart.getValue(CartModel::class.java)
+
+                    Log.d("CHECKPOINTS:::",order?.productName.toString())
                     if (order != null) {
                         cartList.add(order)
                     }

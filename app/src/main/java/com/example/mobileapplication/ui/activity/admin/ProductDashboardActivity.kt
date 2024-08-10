@@ -27,6 +27,10 @@ class ProductDashboardActivity : AppCompatActivity() {
         productDashboardBinding=ActivityProductDashboardBinding.inflate(layoutInflater)
         setContentView(productDashboardBinding.root)
 
+        setSupportActionBar(productDashboardBinding.toolBarDetailProductdetails)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title="Product Details"
+
         var repo = ProductRepoImpl()
         productViewModel = ProductViewModel(repo)
 

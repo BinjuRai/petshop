@@ -12,6 +12,9 @@ import com.example.mobileapplication.model.UserModel
 import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 
 class SignupActivity : AppCompatActivity() {
@@ -26,7 +29,7 @@ class SignupActivity : AppCompatActivity() {
         signupBinding=ActivitySignupBinding.inflate(layoutInflater)
         setContentView(signupBinding.root)
 
-        var repo = AuthRepoImpl()
+        var repo = AuthRepoImpl(FirebaseAuth.getInstance(), )
 
         authViewModel= AuthViewModel(repo)
 
