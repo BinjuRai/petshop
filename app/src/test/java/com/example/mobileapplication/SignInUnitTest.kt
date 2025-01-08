@@ -39,7 +39,7 @@ class AuthUnitTest {
     fun testRegister_Successful() {
         val email = "test@example.com"
         var expectedResult = "Initial Value" // Define the initial value
-
+//#some changes here
         // Mocking task to simulate successful registration
         `when`(mockTask.isSuccessful).thenReturn(true)
         `when`(mockAuth.sendPasswordResetEmail(any()))
