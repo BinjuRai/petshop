@@ -24,7 +24,7 @@ class CartAdapter(var context: Context,var data:ArrayList<CartModel>,var cartVie
         var cartId: TextView = view.findViewById(R.id.IDCart)
         var productName: TextView = view.findViewById(R.id.CartProductName)
 
-        var productPrice: TextView = view.findViewById(R.id.CartProductPrice)
+        var TotalPrice: TextView = view.findViewById(R.id.CartProductPrice)
 
         var quantity:TextView=view.findViewById(R.id.CartProductQuantity)
 
@@ -48,7 +48,7 @@ class CartAdapter(var context: Context,var data:ArrayList<CartModel>,var cartVie
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.cartId.text = "Cart ID:" + data[position].cartid
         holder.productName.text = data[position].productName
-        holder.productPrice.text = "RS." + data[position].productPrice.toString()
+        holder.TotalPrice.text = "RS." + (data[position].productPrice* data[position].quantity).toString()
         holder.quantity.text = "Qty:" + data[position].quantity.toString()
 
 

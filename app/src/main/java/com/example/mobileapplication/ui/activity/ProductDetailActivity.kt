@@ -17,8 +17,6 @@ import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
 import com.example.mobileapplication.viewmodel.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -26,7 +24,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var authViewModel: AuthViewModel
     lateinit var cartViewModel: CartViewModel
     lateinit var loadingUtils: LoadingUtils
-    var quantity:Int =1
+    private var quantity:Int =1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,7 +38,7 @@ class ProductDetailActivity : AppCompatActivity() {
         var cartrepo =CartRepoImpl()
         cartViewModel= CartViewModel(cartrepo)
 
-        var authrepo =AuthRepoImpl(FirebaseAuth.getInstance(), )
+        var authrepo =AuthRepoImpl(FirebaseAuth.getInstance())
         authViewModel= AuthViewModel(authrepo)
 
         loadingUtils= LoadingUtils(this)
@@ -80,9 +78,13 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun addToCart(products: ProductModel?) {
         loadingUtils.showDialog()
+        var productPrice = products?.price?.toInt() ?: 0
+        var TotalPrice = productPrice * quantity
         var currentUser= authViewModel.getCurrentUser()
-        var cartModel=CartModel("",products?.id.toString(),
-            products?.price.toString().toInt(),
+        var cartModel=CartModel("",
+            products?.id.toString(),
+            productPrice,
+            TotalPrice,
             products?.imageUrl.toString(),
             products?.productName.toString(),
             quantity,
