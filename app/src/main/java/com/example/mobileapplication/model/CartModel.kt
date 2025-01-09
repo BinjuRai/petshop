@@ -10,6 +10,5 @@ data class CartModel(
     var quantity: Int = 1,
     var userId: String = ""
 ) {
-    // No-argument constructor for Firebase
     constructor() : this("", "", 0, 0, "", "", 1, "")
 }
