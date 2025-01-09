@@ -29,16 +29,17 @@ class CartRepoImpl: CartRepo {
         }
     }
 
-    override fun deleteCart(cartId: String, callback: (Boolean, String?) -> Unit) {
+    override fun deleteCart(cartId: String, callback: (Boolean, String) -> Unit) {
         reference.child(cartId).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
-                callback(true,"Cart successfully deleted")
+                callback(true,"Successfully deleted")
             }else{
-                callback(false,"Unable to delete cart")
+                callback(false,"Unable to delete data")
 
             }
         }
     }
+
 
     override fun getCart(callback: (List<CartModel>?, Boolean, String?) -> Unit) {
         val currentUser=auth.currentUser
