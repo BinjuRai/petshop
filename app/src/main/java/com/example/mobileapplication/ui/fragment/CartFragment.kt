@@ -1,6 +1,8 @@
 package com.example.mobileapplication.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.adapter.CartAdapter
 import com.example.mobileapplication.databinding.FragmentCartBinding
+import com.example.mobileapplication.databinding.SampleCartBinding
 import com.example.mobileapplication.repository.cart.CartRepoImpl
+import com.example.mobileapplication.ui.activity.BuynowActivity
+import com.example.mobileapplication.ui.activity.admin.CategoryDashBoardActivity
 import com.example.mobileapplication.viewmodel.CartViewModel
 
 class CartFragment : Fragment() {
@@ -19,12 +24,15 @@ class CartFragment : Fragment() {
     private lateinit var cartBinding: FragmentCartBinding
     private lateinit var cartViewModel: CartViewModel
     private lateinit var cartAdapter: CartAdapter
+    lateinit var sampleCartBinding: SampleCartBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         cartBinding = FragmentCartBinding.inflate(inflater, container, false)
+
+        sampleCartBinding = SampleCartBinding.inflate(inflater, container, false)
         return cartBinding.root
     }
 
@@ -40,6 +48,12 @@ class CartFragment : Fragment() {
 
         // Initialize adapter with empty data
         cartAdapter = CartAdapter(requireContext(), ArrayList(), cartViewModel)
+
+        sampleCartBinding.buynowbtn.setOnClickListener {
+            Log.d("CartFragment", "Buy Now button clicked")
+            var intent = Intent(requireContext(), BuynowActivity::class.java)
+            startActivity(intent)
+        }
 
         // Observe cart data and update UI
         cartViewModel.cartData.observe(viewLifecycleOwner) { cart ->

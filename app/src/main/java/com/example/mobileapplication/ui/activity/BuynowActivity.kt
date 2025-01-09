@@ -1,31 +1,35 @@
-package com.example.mobileapplication.ui
+package com.example.mobileapplication.ui.activity
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
-import com.example.mobileapplication.databinding.ActivityPaymentBinding
-import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.databinding.ActivityBuynowBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class PaymentMethodActivity : AppCompatActivity() {
+class BuynowActivity : AppCompatActivity() {
 
-    lateinit var paymentBinding: ActivityPaymentBinding
-
+    lateinit var buynowBinding: ActivityBuynowBinding
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var authViewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        paymentBinding= ActivityPaymentBinding.inflate(layoutInflater)
-        setContentView(paymentBinding.root)
-
-        // Initialize Firebase
+        enableEdgeToEdge()
+        buynowBinding = ActivityBuynowBinding.inflate(layoutInflater)
+        setContentView(buynowBinding.root)
         database = FirebaseDatabase.getInstance().reference
         auth = FirebaseAuth.getInstance()
 
@@ -71,12 +75,12 @@ class PaymentMethodActivity : AppCompatActivity() {
                 if (product != null) {
                     onSuccess(product)
                 } else {
-                    Toast.makeText(this@PaymentMethodActivity, "Product not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BuynowActivity, "Product not found", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@PaymentMethodActivity, "Failed to load product: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BuynowActivity, "Failed to load product: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -90,12 +94,12 @@ class PaymentMethodActivity : AppCompatActivity() {
                 if (user != null) {
                     onSuccess(user)
                 } else {
-                    Toast.makeText(this@PaymentMethodActivity, "User not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BuynowActivity, "User not found", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@PaymentMethodActivity, "Failed to load user: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BuynowActivity, "Failed to load user: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
