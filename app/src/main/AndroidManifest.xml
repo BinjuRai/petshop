@@ -19,7 +19,7 @@
         android:theme="@style/Theme.MobileApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.Payment"
+            android:name=".ui.activity.PaymentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.admin.Paymentactivity"
