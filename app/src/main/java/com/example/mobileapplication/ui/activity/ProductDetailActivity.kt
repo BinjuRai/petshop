@@ -49,6 +49,7 @@ class ProductDetailActivity : AppCompatActivity() {
         productDetailBinding.imgDescdetail.text=products?.description
         productDetailBinding.imgPricedetail.text=products?.price.toString()
 
+
         Picasso.get().load(products?.imageUrl).into(productDetailBinding.imgViewDetail)
 
         productDetailBinding.btnAdd.setOnClickListener{

@@ -18,7 +18,7 @@ import com.google.firebase.database.core.Context
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-class FavouriteAdapter(var context: android.content.Context, var data:ArrayList<CartModel>, var FavouriteViewModel: FavouriteViewModel):RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder>(){
+class FavouriteAdapter(var context: android.content.Context, var data:ArrayList<FavModel>, var FavouriteViewModel: FavouriteViewModel):RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder>(){
 
     class FavouriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -54,6 +54,15 @@ class FavouriteAdapter(var context: android.content.Context, var data:ArrayList<
 
 
         }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(favourite: List<FavModel>){
+        data.clear()
+        data.addAll(favourite)
+        notifyDataSetChanged()
+    }
+    fun getFavourite(position: Int) : String{
+        return data[position].favid
+    }
     }
 
 

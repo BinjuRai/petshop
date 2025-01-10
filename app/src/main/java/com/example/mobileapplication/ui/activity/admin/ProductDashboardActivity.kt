@@ -15,95 +15,112 @@ import com.example.mobileapplication.R
 import com.example.mobileapplication.adapter.ProductAdapter
 import com.example.mobileapplication.databinding.ActivityProductDashboardBinding
 import com.example.mobileapplication.repository.product.ProductRepoImpl
+import com.example.mobileapplication.utils.LoadingUtils
+import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.example.mobileapplication.viewmodel.ProductViewModel
 
 class ProductDashboardActivity : AppCompatActivity() {
     lateinit var productDashboardBinding: ActivityProductDashboardBinding
     lateinit var productAdapter: ProductAdapter
     lateinit var productViewModel: ProductViewModel
+    lateinit var loadingUtils: LoadingUtils
+    lateinit var authViewModel: AuthViewModel
+    lateinit var favouriteViewModel: FavouriteViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        productDashboardBinding=ActivityProductDashboardBinding.inflate(layoutInflater)
+
+        // Initialize binding
+        productDashboardBinding = ActivityProductDashboardBinding.inflate(layoutInflater)
         setContentView(productDashboardBinding.root)
 
+        // Set up the toolbar
         setSupportActionBar(productDashboardBinding.toolBarDetailProductdetails)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title="Product Details"
+        title = "Product Details"
 
-        var repo = ProductRepoImpl()
+        // Initialize ViewModels and Utilities
+        val repo = ProductRepoImpl()
         productViewModel = ProductViewModel(repo)
+        loadingUtils = LoadingUtils(this)
 
+        // Fetch all products from the ViewModel
         productViewModel.getAllProduct()
 
+        // Initialize ProductAdapter with required arguments
         productAdapter = ProductAdapter(
-            this@ProductDashboardActivity,
-            ArrayList()
+            context = this@ProductDashboardActivity,
+            data = ArrayList(),
+            loadingUtils = loadingUtils,
+            authViewModel = authViewModel,
+            favouriteViewModel = favouriteViewModel
         )
+
+        // Observe the product data and update the adapter
         productViewModel.productData.observe(this) { product ->
             product?.let {
                 productAdapter.updateData(it)
             }
         }
 
-        productViewModel.loadingState.observe(this){loading->
-            if(loading){
+        // Observe loading state and show progress bar accordingly
+        productViewModel.loadingState.observe(this) { loading ->
+            if (loading) {
                 productDashboardBinding.progressBarDashProduct.visibility = View.VISIBLE
-            }else{
+            } else {
                 productDashboardBinding.progressBarDashProduct.visibility = View.GONE
-
             }
         }
+
+        // Set up the RecyclerView with a LinearLayoutManager and ProductAdapter
         productDashboardBinding.productRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@ProductDashboardActivity)
             adapter = productAdapter
-
         }
-        ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+
+        // Implement swipe-to-delete functionality
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Not yet implemented")
+                // Not yet implemented
+                return false
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                var id = productAdapter.getProductId(viewHolder.adapterPosition)
-                var imageName = productAdapter.getImageName(viewHolder.adapterPosition)
+                val id = productAdapter.getProductId(viewHolder.adapterPosition)
+                val imageName = productAdapter.getImageName(viewHolder.adapterPosition)
 
-                productViewModel.deleteProduct(id){
-                        success,message->
-                    if(success){
-                        productViewModel.deleteImage(imageName){
-                                s,m->
-                            if(s){
-                                Toast.makeText(applicationContext,message, Toast.LENGTH_SHORT).show()
+                // Delete the product and its image
+                productViewModel.deleteProduct(id) { success, message ->
+                    if (success) {
+                        productViewModel.deleteImage(imageName) { imageSuccess, imageMessage ->
+                            if (imageSuccess) {
+                                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                             }
                         }
-
-                    }else{
-                        Toast.makeText(applicationContext,message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                     }
-
                 }
             }
         }).attachToRecyclerView(productDashboardBinding.productRecyclerView)
 
-
-
+        // Set up floating action button to add a new product
         productDashboardBinding.productFloating.setOnClickListener {
-            var intent = Intent(this@ProductDashboardActivity,AddProductActivity::class.java)
+            val intent = Intent(this@ProductDashboardActivity, AddProductActivity::class.java)
             startActivity(intent)
         }
 
+        // Handle system bar insets to avoid overlapping UI elements
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
-
-
 }

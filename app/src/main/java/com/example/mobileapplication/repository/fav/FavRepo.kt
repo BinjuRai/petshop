@@ -8,11 +8,11 @@ import com.example.mobileapplication.model.FavModel
 
 interface FavRepo {
 
-    fun id(imageName: String)
+    fun addFavourite(favoriteModel: FavModel, callback: (Boolean, String?) -> Unit)
 
-    fun addFavouriteModel (favModel: FavModel, callback: (Boolean, String?) -> Unit)
+    fun deleteFavourite(favouriteid: String, callback: (Boolean, String?) -> Unit)
 
-    fun deleteImage(imageName:String,callback: (Boolean, String?) -> Unit)
+    fun getFavourite(callback: (List<FavModel>?,Boolean, String?) -> Unit)
 
-    fun updateFavourite(callback: (List<FavModel>?, Boolean, String?) -> Unit)
+    fun updateFavourite(favouriteid:String,data: MutableMap<String,Any?>,callback: (Boolean, String?) -> Unit)
 }
