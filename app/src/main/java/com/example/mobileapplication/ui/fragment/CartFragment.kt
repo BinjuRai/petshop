@@ -50,7 +50,6 @@ class CartFragment : Fragment() {
         cartAdapter = CartAdapter(requireContext(), ArrayList(), cartViewModel)
 
 
-
         // Observe cart data and update UI
         cartViewModel.cartData.observe(viewLifecycleOwner) { cart ->
             if (cart.isNullOrEmpty()) {

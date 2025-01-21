@@ -45,12 +45,18 @@ class BuynowActivity : AppCompatActivity() {
 
         val btnConfirmOrder: Button = findViewById(R.id.btnConfirmOrder)
 
+        val pName = intent.getStringExtra("pName")
+        val pPrice = intent.getStringExtra("pPrice")
+    val pQuantity = intent.getStringExtra("Quantity")
+
+
+
         // Fetch product and user data
         fetchProductData { product ->
-            tvProductName.text = product["name"].toString()
-            tvProductPrice.text = "Price: ${product["price"].toString()}"
-            tvProductQuantity.text = "Quantity: ${product["quantity"].toString()}"
-            Picasso.get().load(product["image"].toString()).into(ivProductImage)
+            tvProductName.text = product["productName"].toString()
+            tvProductPrice.text = "productPrice: ${product["price"].toString()}"
+            tvProductQuantity.text = "quantity: ${product["quantity"].toString()}"
+            Picasso.get().load(product["imageUrl"].toString()).into(ivProductImage)
         }
 
         fetchUserData { user ->

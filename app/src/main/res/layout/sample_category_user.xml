@@ -9,15 +9,14 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/categoryImgUser"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        android:src="@drawable/dummyprofilepic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    android:id="@+id/categoryImgUser"
+    android:layout_width="110dp"
+    android:layout_height="95dp"
+    android:src="@drawable/dummyprofilepic"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/categoriTitle"
         android:layout_width="49dp"

@@ -51,6 +51,13 @@ class CartAdapter(
         holder.buyNow.setOnClickListener {
             Log.d("CartFragment", "Buy Now button clicked")
             var intent = Intent(context, BuynowActivity::class.java)
+
+            // Add data to the intent using a bundle
+            intent.putExtra("pName", cartItem.productName) // Example data
+            intent.putExtra("productId", cartItem.productId) // Example data
+            intent.putExtra("pPrice", cartItem.productPrice.toString()) // Example data
+            intent.putExtra("Quantity", cartItem.quantity) // Example data
+
             context.startActivity(intent)
         }
         holder.cartId.text = "Cart ID: ${cartItem.cartid}"

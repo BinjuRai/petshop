@@ -5,12 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cbrown"
     tools:context=".ui.activity.SignupActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/updateppimg"/>
+        android:layout_width="416dp"
+        android:layout_height="838dp"
+        android:src="@drawable/upaccbg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-5dp" />
 
 
     <TextView

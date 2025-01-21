@@ -5,7 +5,7 @@
     android:id="@+id/SignUpPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Lavender"
+    android:background="@color/creambrown"
     tools:context=".ui.activity.SignupActivity">
 
 
@@ -125,7 +125,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="184dp"
         android:text="Sign Up"
-        app:backgroundTint="@color/Green"
+        app:backgroundTint="@color/darkbrown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

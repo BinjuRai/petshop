@@ -10,15 +10,15 @@
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="288dp"
-        android:layout_height="393dp"
+        android:layout_width="328dp"
+        android:layout_height="437dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="50dp"
-        android:src="@drawable/splashimage"
+        android:src="@drawable/spss"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="24dp"
-        android:text="Furry House"
+        android:text="E-PetShop"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
         android:layout_marginTop="56dp"
         android:text="LET'S GET STARTED"
         android:textColor="@color/white"
-        app:backgroundTint="@color/Green"
+        app:backgroundTint="@color/darkbrown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description3" />

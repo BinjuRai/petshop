@@ -12,13 +12,24 @@ import com.example.mobileapplication.R
 import com.example.mobileapplication.adapter.user.ProductUserAdapter
 import com.example.mobileapplication.databinding.ActivityCategoryBinding
 import com.example.mobileapplication.model.CategoryModel
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
+import com.example.mobileapplication.repository.fav.FavRepoImpl
 import com.example.mobileapplication.repository.product.ProductRepoImpl
+import com.example.mobileapplication.utils.LoadingUtils
+import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.example.mobileapplication.viewmodel.ProductViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class CategoryActivity : AppCompatActivity() {
     lateinit var categoryBinding: ActivityCategoryBinding
     lateinit var productViewModel: ProductViewModel
     lateinit var productUserAdapter: ProductUserAdapter
+
+    lateinit var authViewModel: AuthViewModel
+    lateinit var favouriteViewModel: FavouriteViewModel
+
+    lateinit var loadingUtils: LoadingUtils
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +40,10 @@ class CategoryActivity : AppCompatActivity() {
 
         setSupportActionBar(categoryBinding.toolBarCategory)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        loadingUtils = LoadingUtils(this)
+
+        authViewModel = AuthViewModel(AuthRepoImpl(FirebaseAuth.getInstance()))
+        favouriteViewModel = FavouriteViewModel(FavRepoImpl())
 
 
 
@@ -40,7 +55,8 @@ class CategoryActivity : AppCompatActivity() {
         productViewModel.getProductByCategory(category?.categoryName.toString())
 
         productUserAdapter = ProductUserAdapter(
-            this@CategoryActivity, ArrayList()
+            this@CategoryActivity, ArrayList(),authViewModel,favouriteViewModel,loadingUtils
+
         )
 
         productViewModel.productData.observe(this) { product ->
