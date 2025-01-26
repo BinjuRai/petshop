@@ -5,19 +5,9 @@
     android:id="@+id/SignUpPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/creambrown"
+    android:background="@color/cbrown"
     tools:context=".ui.activity.SignupActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="473dp"
-        android:layout_height="743dp"
-        android:src="@drawable/signupimg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/signuptext"
@@ -27,10 +17,11 @@
         android:layout_marginTop="156dp"
         android:layout_marginEnd="167dp"
         android:text="Sign up"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,6 +34,7 @@
         android:layout_marginEnd="175dp"
         android:text="Create your account"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuptext" />
@@ -130,4 +122,15 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignup" />
+
+    <ImageView
+        android:layout_width="655dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="43dp"
+        android:src="@drawable/paws"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Signupbtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
