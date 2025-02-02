@@ -33,7 +33,6 @@ class sensorActivity : AppCompatActivity() {
             insets
         }
     }
-
     class AccelerometerHandler(private val context: Context) : SensorEventListener {
 
         private lateinit var sensorManager: SensorManager

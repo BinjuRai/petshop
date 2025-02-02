@@ -62,8 +62,6 @@ class CategoryUserAdapter(var context: Context,var data:ArrayList<CategoryModel>
             context.startActivity(intent)
         }
 
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -72,6 +70,4 @@ class CategoryUserAdapter(var context: Context,var data:ArrayList<CategoryModel>
         data.addAll(category)
         notifyDataSetChanged()
     }
-
-
 }

@@ -63,7 +63,6 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-
     private fun addUserToDatabase(userId: String?, userModel: UserModel) {
         authViewModel.addUserToDatabase(userId.toString(),userModel){
             success,message->

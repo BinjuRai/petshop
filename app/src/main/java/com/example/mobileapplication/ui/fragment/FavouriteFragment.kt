@@ -30,7 +30,6 @@ class FavouriteFragment : Fragment() {
         favouriteBinding = FragmentFavouriteBinding.inflate(inflater, container, false)
         return favouriteBinding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

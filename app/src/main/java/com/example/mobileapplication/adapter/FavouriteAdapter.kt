@@ -53,12 +53,6 @@ class FavouriteAdapter(
             Log.d("FavFragment", "Favourite button clicked")
             var intent = Intent(context, FavouriteFragment::class.java)
 
-            // Add data to the intent using a bundle
-           // intent.putExtra("pName", cartItem.productName) // Example data
-            //intent.putExtra("productId", cartItem.productId) // Example data
-            //intent.putExtra("pPrice", cartItem.productPrice.toString()) // Example data
-            //intent.putExtra("Quantity", cartItem.quantity) // Example data
-
             context.startActivity(intent)
         }
 
