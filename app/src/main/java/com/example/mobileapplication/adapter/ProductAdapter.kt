@@ -36,8 +36,6 @@ class ProductAdapter(
         val productDesc: TextView = view.findViewById(R.id.categorytype)
         val editLabel: TextView = view.findViewById(R.id.categoryEditlabel)
         val imageView: ImageView = view.findViewById(R.id.imageCategory)
-//        val id: TextView = view.findViewById(R.id.FavProductName)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -57,21 +55,6 @@ class ProductAdapter(
 
         // Load product image
         Picasso.get().load(product.imageUrl).into(holder.imageView)
-
-//        holder.heartButton.setBackgroundResource(R.drawable.likefav)
-
-        // Heart button click listener
-//        holder.heartButton.setOnClickListener {
-//            Toast.makeText(context, "Heart button clicked!", Toast.LENGTH_SHORT).show()
-//            val favouriteModel = FavModel(
-//                favid = "", // ID generated server-side
-//                productId = authViewModel.getCurrentUser()?.uid.orEmpty(),
-//                productName = product.productName.orEmpty(),
-//                productImage = product.imageUrl.orEmpty()
-//            )
-//            addToFavourite(favouriteModel)
-//            holder.heartButton.backgroundTintList = context.getColorStateList(R.color.Red)
-//        }
 
         // Edit label click listener
         holder.editLabel.setOnClickListener {

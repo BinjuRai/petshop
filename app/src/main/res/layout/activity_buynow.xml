@@ -12,20 +12,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
+        android:layout_marginTop="20dp"
     android:gravity="center_horizontal"
     android:padding="8dp">
 
     <!-- Product Section -->
-    <ImageView
-        android:id="@+id/ivProductImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Product Image"
-        android:src="@drawable/ic_placeholder" />
 
-    <TextView
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="35dp"
+            android:contentDescription="Product Image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder"
+            tools:layout_editor_absoluteX="106dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <TextView
         android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,13 +104,15 @@
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginVertical="16dp"
-        android:background="@android:color/darker_gray" />
+        <!-- Confirm Order Button -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="16dp"
+            android:background="@android:color/darker_gray"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="173dp" />
 
-    <!-- Confirm Order Button -->
         <Button
             android:id="@+id/btnConfirmOrder"
             android:layout_width="206dp"
@@ -116,7 +122,11 @@
             android:padding="12dp"
             android:text="Confirm Order"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="127dp" />
     </LinearLayout>
+
+
 
 </ScrollView>

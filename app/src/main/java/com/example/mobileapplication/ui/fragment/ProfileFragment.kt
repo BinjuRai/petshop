@@ -37,8 +37,6 @@ class ProfileFragment : Fragment(),SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private lateinit var sensor: Sensor
     private var lastShakeTime: Long = 0
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -22,8 +22,7 @@ class AuthViewModel(var repo: AuthRepo):ViewModel() {
     fun getCurrentUser(): FirebaseUser? {
        return repo.getCurrentUser()
     }
-//    fun forgetpassword(email:String,callback: (Boolean,String?) -> Unit){
-//        repo.forgetpassword( email, callback)
+//
 //
 //    }
     fun logout(callback: (Boolean, String?) -> Unit){

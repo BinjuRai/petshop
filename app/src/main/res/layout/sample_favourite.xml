@@ -10,7 +10,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cartcardview"
         android:layout_width="match_parent"
-        android:layout_height="308dp"
+        android:layout_height="300dp"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -63,8 +65,8 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="355dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="315dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/likefav"
                 android:backgroundTint="@color/Red"

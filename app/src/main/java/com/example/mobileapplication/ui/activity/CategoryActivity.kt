@@ -31,7 +31,6 @@ class CategoryActivity : AppCompatActivity() {
 
     lateinit var loadingUtils: LoadingUtils
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -35,7 +35,6 @@ class HomeFragment : Fragment() {
     lateinit var favouriteViewModel: FavouriteViewModel
     lateinit var loadingUtils: LoadingUtils
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,10 +63,6 @@ class HomeFragment : Fragment() {
         loadingUtils = LoadingUtils(requireActivity())
 
         authViewModel = AuthViewModel(AuthRepoImpl(FirebaseAuth.getInstance()))
-
-
-
-
 
         productUserAdapter= ProductUserAdapter(
             requireContext(),

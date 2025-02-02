@@ -19,8 +19,6 @@ import com.example.mobileapplication.ui.fragment.sensorActivity
 class DashboardActivity : AppCompatActivity() {
 
     lateinit var dashboardBinding: ActivityDashboardBinding
-//    private lateinit var accelerometerHandler: sensorActivity.AccelerometerHandler
-
     private fun replaceFragemnt(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragementTransaction: FragmentTransaction = fragmentManager.beginTransaction()

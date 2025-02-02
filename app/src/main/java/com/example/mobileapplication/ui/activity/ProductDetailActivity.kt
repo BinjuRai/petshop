@@ -34,7 +34,6 @@ class ProductDetailActivity : AppCompatActivity() {
         setSupportActionBar(productDetailBinding.toolBarDetail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         var cartrepo =CartRepoImpl()
         cartViewModel= CartViewModel(cartrepo)
 
@@ -103,8 +102,6 @@ class ProductDetailActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
