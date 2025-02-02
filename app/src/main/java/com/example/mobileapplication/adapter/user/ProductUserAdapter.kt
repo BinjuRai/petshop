@@ -77,10 +77,11 @@ class ProductUserAdapter (var context: Context, var data : ArrayList<ProductMode
 
         // Heart button click listener
         holder.heartButton.setOnClickListener {
-            Toast.makeText(context, "Heart button clicked!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Added to Favourite!", Toast.LENGTH_SHORT).show()
             val favouriteModel = FavModel(
                 favid = "", // ID generated server-side
-                productId = authViewModel.getCurrentUser()?.uid.orEmpty(),
+                userId = authViewModel.getCurrentUser()?.uid.orEmpty(),
+                productId = data[position].id,
                 productImage = data[position].imageUrl,
                 productName = data[position].productName,
 

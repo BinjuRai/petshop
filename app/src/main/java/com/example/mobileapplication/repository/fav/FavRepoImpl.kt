@@ -16,7 +16,6 @@ class FavRepoImpl : FavRepo {
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun addFavourite(favoriteModel: FavModel, callback: (Boolean, String?) -> Unit) {
         var id = ref.push().key ?: ""
-
         favoriteModel.favid = id
 
         ref.child(id).setValue(favoriteModel).addOnCompleteListener { task ->
@@ -50,7 +49,9 @@ class FavRepoImpl : FavRepo {
                     var favourite = eachFavourite.getValue(FavModel::class.java)
                     if(favourite != null){
                         favouriteList.add(favourite)
+                        Log.d("checkpoint",favourite?.favid.toString())
                     }
+
                 }
                 callback(favouriteList,true,"Data fetched")
             }

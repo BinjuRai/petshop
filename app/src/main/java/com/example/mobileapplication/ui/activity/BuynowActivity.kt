@@ -1,22 +1,17 @@
 package com.example.mobileapplication.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityBuynowBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class BuynowActivity : AppCompatActivity() {
@@ -42,27 +37,24 @@ class BuynowActivity : AppCompatActivity() {
         val tvUserName: TextView = findViewById(R.id.tvUserName)
         val tvUserAddress: TextView = findViewById(R.id.tvUserAddress)
         val tvUserContact: TextView = findViewById(R.id.tvUserContact)
-
         val btnConfirmOrder: Button = findViewById(R.id.btnConfirmOrder)
 
-        val pName = intent.getStringExtra("pName")
-        val pPrice = intent.getStringExtra("pPrice")
-    val pQuantity = intent.getStringExtra("Quantity")
+        // Fetch cart data instead of product data
+        fetchCartData { cart ->
+            val price = cart["productPrice"].toString().toDoubleOrNull() ?: 0.0
+            val quantity = cart["quantity"].toString().toIntOrNull() ?: 1
+            val totalPrice = price * quantity  // Multiply price by quantity
 
-
-
-        // Fetch product and user data
-        fetchProductData { product ->
-            tvProductName.text = product["productName"].toString()
-            tvProductPrice.text = "productPrice: ${product["price"].toString()}"
-            tvProductQuantity.text = "quantity: ${product["quantity"].toString()}"
-            Picasso.get().load(product["imageUrl"].toString()).into(ivProductImage)
+            tvProductName.text = cart["productName"].toString()
+            tvProductPrice.text = "Total Price: $totalPrice"  // Display multiplied price
+            tvProductQuantity.text = "Quantity: $quantity"
+            Picasso.get().load(cart["productImage"].toString()).into(ivProductImage)
         }
 
         fetchUserData { user ->
             tvUserName.text = "Name: ${user["name"].toString()}"
             tvUserAddress.text = "Address: ${user["address"].toString()}"
-            tvUserContact.text = "Contact: ${user["contact"].toString()}"
+            tvUserContact.text = "Contact: ${user["phoneNo"].toString()}"
         }
 
         // Confirm order
@@ -72,21 +64,25 @@ class BuynowActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchProductData(onSuccess: (Map<String, Any>) -> Unit) {
-        val productId = intent.getStringExtra("productId") ?: return
-        database.child("products").child(productId).addListenerForSingleValueEvent(object :
+    private fun fetchCartData(onSuccess: (Map<String, Any>) -> Unit) {
+        val cartId = intent.getStringExtra("cartId") ?: return
+        Log.d("BuynowActivity", "Fetching cart ID: $cartId")
+
+        database.child("cart").child(cartId).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val product = snapshot.value as? Map<String, Any>
-                if (product != null) {
-                    onSuccess(product)
+                Log.d("BuynowActivity", "Cart Snapshot: ${snapshot.value}")
+                val cart = snapshot.value as? Map<String, Any>
+                if (cart != null) {
+                    onSuccess(cart)
                 } else {
-                    Toast.makeText(this@BuynowActivity, "Product not found", Toast.LENGTH_SHORT).show()
+                    Log.e("BuynowActivity", "Cart data not found")
+                    Toast.makeText(this@BuynowActivity, "Cart data not found", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@BuynowActivity, "Failed to load product: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BuynowActivity, "Failed to load cart: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

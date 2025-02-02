@@ -35,9 +35,8 @@ class ProductAdapter(
         val productName: TextView = view.findViewById(R.id.categoryName)
         val productDesc: TextView = view.findViewById(R.id.categorytype)
         val editLabel: TextView = view.findViewById(R.id.categoryEditlabel)
-        val heartButton:Button = view.findViewById(R.id.heartButton)
         val imageView: ImageView = view.findViewById(R.id.imageCategory)
-        val id: TextView = view.findViewById(R.id.FavProductName)
+//        val id: TextView = view.findViewById(R.id.FavProductName)
 
     }
 
@@ -59,20 +58,20 @@ class ProductAdapter(
         // Load product image
         Picasso.get().load(product.imageUrl).into(holder.imageView)
 
-        holder.heartButton.setBackgroundResource(R.drawable.likefav)
+//        holder.heartButton.setBackgroundResource(R.drawable.likefav)
 
         // Heart button click listener
-        holder.heartButton.setOnClickListener {
-            Toast.makeText(context, "Heart button clicked!", Toast.LENGTH_SHORT).show()
-            val favouriteModel = FavModel(
-                favid = "", // ID generated server-side
-                productId = authViewModel.getCurrentUser()?.uid.orEmpty(),
-                productName = product.productName.orEmpty(),
-                productImage = product.imageUrl.orEmpty()
-            )
-            addToFavourite(favouriteModel)
-            holder.heartButton.backgroundTintList = context.getColorStateList(R.color.Red)
-        }
+//        holder.heartButton.setOnClickListener {
+//            Toast.makeText(context, "Heart button clicked!", Toast.LENGTH_SHORT).show()
+//            val favouriteModel = FavModel(
+//                favid = "", // ID generated server-side
+//                productId = authViewModel.getCurrentUser()?.uid.orEmpty(),
+//                productName = product.productName.orEmpty(),
+//                productImage = product.imageUrl.orEmpty()
+//            )
+//            addToFavourite(favouriteModel)
+//            holder.heartButton.backgroundTintList = context.getColorStateList(R.color.Red)
+//        }
 
         // Edit label click listener
         holder.editLabel.setOnClickListener {

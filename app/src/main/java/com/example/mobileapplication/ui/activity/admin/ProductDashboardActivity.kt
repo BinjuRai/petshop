@@ -8,17 +8,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.adapter.ProductAdapter
 import com.example.mobileapplication.databinding.ActivityProductDashboardBinding
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
+import com.example.mobileapplication.repository.fav.FavRepoImpl
 import com.example.mobileapplication.repository.product.ProductRepoImpl
 import com.example.mobileapplication.utils.LoadingUtils
 import com.example.mobileapplication.viewmodel.AuthViewModel
 import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.example.mobileapplication.viewmodel.ProductViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class ProductDashboardActivity : AppCompatActivity() {
     lateinit var productDashboardBinding: ActivityProductDashboardBinding
@@ -43,8 +47,13 @@ class ProductDashboardActivity : AppCompatActivity() {
 
         // Initialize ViewModels and Utilities
         val repo = ProductRepoImpl()
+        val authRepo = AuthRepoImpl(FirebaseAuth.getInstance())
         productViewModel = ProductViewModel(repo)
         loadingUtils = LoadingUtils(this)
+        authViewModel = AuthViewModel(authRepo)// FIX HERE
+        favouriteViewModel = FavouriteViewModel(FavRepoImpl())
+
+
 
         // Fetch all products from the ViewModel
         productViewModel.getAllProduct()
@@ -64,6 +73,7 @@ class ProductDashboardActivity : AppCompatActivity() {
                 productAdapter.updateData(it)
             }
         }
+
 
         // Observe loading state and show progress bar accordingly
         productViewModel.loadingState.observe(this) { loading ->

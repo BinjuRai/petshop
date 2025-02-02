@@ -24,7 +24,7 @@ class FavouriteViewModel (var repo:FavRepo):ViewModel(){
         get() = _loadingState
     fun getFavouriteById() {
         _loadingState.value = true
-        repo.getFavourite(){
+        repo.getFavourite{
                 favouriteList,success,message->
             if(favouriteList!=null){
                 _loadingState.value = false

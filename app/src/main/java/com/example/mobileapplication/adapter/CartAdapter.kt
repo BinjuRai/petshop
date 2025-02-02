@@ -52,11 +52,15 @@ class CartAdapter(
             Log.d("CartFragment", "Buy Now button clicked")
             var intent = Intent(context, BuynowActivity::class.java)
 
+            intent.putExtra("cartId", cartItem.cartid)
+            intent.putExtra("productId", cartItem.productId)
+
+
             // Add data to the intent using a bundle
-            intent.putExtra("pName", cartItem.productName) // Example data
-            intent.putExtra("productId", cartItem.productId) // Example data
-            intent.putExtra("pPrice", cartItem.productPrice.toString()) // Example data
-            intent.putExtra("Quantity", cartItem.quantity) // Example data
+//            intent.putExtra("pName", cartItem.productName) // Example data
+//            intent.putExtra("productId", cartItem.productId) // Example data
+//            intent.putExtra("pPrice", cartItem.productPrice.toString()) // Example data
+//            intent.putExtra("Quantity", cartItem.quantity) // Example data
 
             context.startActivity(intent)
         }
