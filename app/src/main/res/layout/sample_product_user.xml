@@ -53,6 +53,27 @@
 
             </TextView>
 
+            <Button
+                android:id="@+id/heartButtonP"
+                android:layout_width="22dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/likefav"
+                android:backgroundTint="@color/Red"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/productPriceUser"
+                app:layout_constraintTop_toBottomOf="@+id/productnameUser" />
+
             <ProgressBar
                 android:id="@+id/pbeachgProduct"
                 style="?android:attr/progressBarStyle"

@@ -2,9 +2,12 @@ package com.example.mobileapplication.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -12,6 +15,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.model.CartModel
+import com.example.mobileapplication.ui.activity.BuynowActivity
 import com.example.mobileapplication.viewmodel.CartViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -24,6 +28,7 @@ class CartAdapter(
 
     class CartViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cartId: TextView = view.findViewById(R.id.IDCart)
+        val buyNow: Button = view.findViewById(R.id.buynowbtn)
         val productName: TextView = view.findViewById(R.id.CartProductName)
         val totalPrice: TextView = view.findViewById(R.id.CartProductPrice)
         val quantity: TextView = view.findViewById(R.id.CartProductQuantity)
@@ -43,6 +48,22 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val cartItem = data[position]
 
+        holder.buyNow.setOnClickListener {
+            Log.d("CartFragment", "Buy Now button clicked")
+            var intent = Intent(context, BuynowActivity::class.java)
+
+            intent.putExtra("cartId", cartItem.cartid)
+            intent.putExtra("productId", cartItem.productId)
+
+
+            // Add data to the intent using a bundle
+//            intent.putExtra("pName", cartItem.productName) // Example data
+//            intent.putExtra("productId", cartItem.productId) // Example data
+//            intent.putExtra("pPrice", cartItem.productPrice.toString()) // Example data
+//            intent.putExtra("Quantity", cartItem.quantity) // Example data
+
+            context.startActivity(intent)
+        }
         holder.cartId.text = "Cart ID: ${cartItem.cartid}"
         holder.productName.text = cartItem.productName
         holder.totalPrice.text = "RS. ${cartItem.productPrice * cartItem.quantity}"

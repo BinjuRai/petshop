@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.mobileapplication.R
 import com.example.mobileapplication.databinding.ActivityDashboardBinding
 import com.example.mobileapplication.ui.fragment.CartFragment
+import com.example.mobileapplication.ui.fragment.FavouriteFragment
 import com.example.mobileapplication.ui.fragment.HomeFragment
 import com.example.mobileapplication.ui.fragment.ProfileFragment
 import com.example.mobileapplication.ui.fragment.sensorActivity
@@ -38,8 +39,10 @@ class DashboardActivity : AppCompatActivity() {
             dashboardBinding.btnNavigation.setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.menuHome -> replaceFragemnt(HomeFragment())
+                    R.id.menuFavourite->replaceFragemnt(FavouriteFragment())
                     R.id.menuCart -> replaceFragemnt(CartFragment())
                     R.id.menuProfile -> replaceFragemnt(ProfileFragment())
+
                     else -> {}
                 }
                 true

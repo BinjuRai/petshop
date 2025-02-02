@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -14,20 +15,30 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.model.CategoryModel
+import com.example.mobileapplication.model.FavModel
 import com.example.mobileapplication.model.ProductModel
 import com.example.mobileapplication.ui.activity.ProductDetailActivity
 import com.example.mobileapplication.ui.activity.admin.UpdateProductActivity
+import com.example.mobileapplication.utils.LoadingUtils
+import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class ProductUserAdapter (var context: Context, var data : ArrayList<ProductModel>) : RecyclerView.Adapter<ProductUserAdapter.ProductUserViewHolder>() {
+class ProductUserAdapter (var context: Context, var data : ArrayList<ProductModel>,
+                          private val authViewModel: AuthViewModel,
+                          private val favouriteViewModel: FavouriteViewModel,
+                          private val loadingUtils: LoadingUtils
+
+) : RecyclerView.Adapter<ProductUserAdapter.ProductUserViewHolder>() {
 
     class ProductUserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var productname: TextView = view.findViewById(R.id.productnameUser)
         var productprice: TextView = view.findViewById(R.id.productPriceUser)
-        var progressBar: ProgressBar =view.findViewById(R.id.pbeachgProduct)
-        var card:CardView=view.findViewById(R.id.CardProductUser)
+        var card: CardView = view.findViewById(R.id.CardProductUser)
+        val heartButton: Button = view.findViewById(R.id.heartButtonP)
+        val progressBar: ProgressBar = view.findViewById(R.id.pbeachgProduct)
         var imageView: ImageView = view.findViewById(R.id.productImgUser)
     }
 
@@ -62,8 +73,40 @@ class ProductUserAdapter (var context: Context, var data : ArrayList<ProductMode
             intent.putExtra("product",data[position])
             context.startActivity(intent)
         }
+        holder.heartButton.setBackgroundResource(R.drawable.likefav)
+
+        // Heart button click listener
+        holder.heartButton.setOnClickListener {
+            Toast.makeText(context, "Added to Favourite!", Toast.LENGTH_SHORT).show()
+            val favouriteModel = FavModel(
+                favid = "", // ID generated server-side
+                userId = authViewModel.getCurrentUser()?.uid.orEmpty(),
+                productId = data[position].id,
+                productImage = data[position].imageUrl,
+                productName = data[position].productName,
+
+            )
+            addToFavourite(favouriteModel)
+            holder.heartButton.backgroundTintList = context.getColorStateList(R.color.Red)
+        }
 
 
+
+    }
+    private fun addToFavourite(favModel: FavModel) {
+        loadingUtils.showDialog()
+
+        favouriteViewModel.addFavourite(favModel) { success, message ->
+            loadingUtils.dismiss()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            if (success) {
+                // Show a toast with the success message
+                Toast.makeText(context, "Successfully added to favourite", Toast.LENGTH_LONG).show()
+            } else {
+                // Show the failure message from the response
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -72,6 +115,7 @@ class ProductUserAdapter (var context: Context, var data : ArrayList<ProductMode
         data.addAll(product)
         notifyDataSetChanged()
     }
+
 
 
 }

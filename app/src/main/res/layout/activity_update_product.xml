@@ -9,13 +9,12 @@
     tools:context=".ui.activity.admin.UpdateProductActivity">
 
     <ImageView
-        android:layout_width="551dp"
-        android:layout_height="837dp"
+        android:layout_width="512dp"
+        android:layout_height="487dp"
         android:src="@drawable/loginbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <ImageView

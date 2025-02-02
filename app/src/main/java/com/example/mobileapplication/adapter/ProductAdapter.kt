@@ -6,65 +6,109 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileapplication.R
 import com.example.mobileapplication.model.CategoryModel
+import com.example.mobileapplication.model.FavModel
 import com.example.mobileapplication.model.ProductModel
+import com.example.mobileapplication.ui.activity.BuynowActivity
 import com.example.mobileapplication.ui.activity.admin.UpdateProductActivity
+import com.example.mobileapplication.ui.fragment.FavouriteFragment
+import com.example.mobileapplication.utils.LoadingUtils
+import com.example.mobileapplication.viewmodel.AuthViewModel
+import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.squareup.picasso.Picasso
 
-class ProductAdapter (var context: Context, var data : ArrayList<ProductModel>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(
+    private val context: Context,
+    private val data: ArrayList<ProductModel>,
+    private val loadingUtils: LoadingUtils,
+    private val authViewModel: AuthViewModel,
+    private val favouriteViewModel: FavouriteViewModel
+) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var productname: TextView = view.findViewById(R.id.categoryName)
-        var productDesc: TextView = view.findViewById(R.id.categorytype)
-        var editLabel: TextView = view.findViewById(R.id.categoryEditlabel)
+        val productName: TextView = view.findViewById(R.id.categoryName)
+        val productDesc: TextView = view.findViewById(R.id.categorytype)
+        val editLabel: TextView = view.findViewById(R.id.categoryEditlabel)
+        val imageView: ImageView = view.findViewById(R.id.imageCategory)
+//        val id: TextView = view.findViewById(R.id.FavProductName)
 
-        var imageView: ImageView = view.findViewById(R.id.imageCategory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        var view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.sample_category_admin, parent, false)
         return ProductViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.productname.text = data[position].productName
-        holder.productDesc.text = data[position].description
+        val product = data[position]
 
-        var image = data[position].imageUrl
-        Picasso.get().load(image).into(holder.imageView)
+        // Set product details
+        holder.productName.text = product.productName
+        holder.productDesc.text = product.description
 
+        // Load product image
+        Picasso.get().load(product.imageUrl).into(holder.imageView)
+
+//        holder.heartButton.setBackgroundResource(R.drawable.likefav)
+
+        // Heart button click listener
+//        holder.heartButton.setOnClickListener {
+//            Toast.makeText(context, "Heart button clicked!", Toast.LENGTH_SHORT).show()
+//            val favouriteModel = FavModel(
+//                favid = "", // ID generated server-side
+//                productId = authViewModel.getCurrentUser()?.uid.orEmpty(),
+//                productName = product.productName.orEmpty(),
+//                productImage = product.imageUrl.orEmpty()
+//            )
+//            addToFavourite(favouriteModel)
+//            holder.heartButton.backgroundTintList = context.getColorStateList(R.color.Red)
+//        }
+
+        // Edit label click listener
         holder.editLabel.setOnClickListener {
-            var intent = Intent(context, UpdateProductActivity::class.java)
-            intent.putExtra("products", data[position])
+            val intent = Intent(context, UpdateProductActivity::class.java).apply {
+                putExtra("products", product)
+            }
             context.startActivity(intent)
         }
+    }
 
+    private fun addToFavourite(favModel: FavModel) {
+        loadingUtils.showDialog()
 
+        favouriteViewModel.addFavourite(favModel) { success, message ->
+            loadingUtils.dismiss()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            if (success) {
+                // Show a toast with the success message
+                Toast.makeText(context, "Successfully added to favourite", Toast.LENGTH_LONG).show()
+            } else {
+                // Show the failure message from the response
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(product: List<ProductModel>){
+    fun updateData(product: List<ProductModel>) {
         data.clear()
         data.addAll(product)
         notifyDataSetChanged()
     }
 
-    fun getProductId(position: Int) : String{
-        return data[position].id
-    }
+    fun getProductId(position: Int): String = data[position].id
 
-    fun getImageName(position: Int): String{
-        return data[position].productName
-    }
+    fun getImageName(position: Int): String = data[position].productName
 }
+
 
 

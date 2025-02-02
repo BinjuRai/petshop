@@ -6,27 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightLavender"
-
-
     tools:context=".ui.activity.LoginActivity">
-
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="532dp"
-        android:layout_height="1010dp"
+        android:layout_width="417dp"
+        android:layout_height="604dp"
         android:src="@drawable/loginbg"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="227dp" />
 
     <EditText
         android:id="@+id/EmailAddressLogin"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="61dp"
         android:ems="10"
         android:hint="E-mail"
@@ -60,7 +57,7 @@
         android:layout_marginEnd="184dp"
         android:text="Login"
         android:textColor="@color/white"
-        app:backgroundTint="@color/Green"
+        app:backgroundTint="@color/darkbrown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +71,6 @@
         android:layout_marginTop="16dp"
         android:text="Forget Password"
         android:textColor="@color/Red"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PasswordLogin" />
 
@@ -86,6 +82,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="60dp"
         android:text="Create new account"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

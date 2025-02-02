@@ -13,18 +13,27 @@ import com.example.mobileapplication.adapter.ProductAdapter
 import com.example.mobileapplication.adapter.user.CategoryUserAdapter
 import com.example.mobileapplication.adapter.user.ProductUserAdapter
 import com.example.mobileapplication.databinding.FragmentHomeBinding
+import com.example.mobileapplication.repository.auth.AuthRepoImpl
 import com.example.mobileapplication.repository.category.CategoryRepoImpl
+import com.example.mobileapplication.repository.fav.FavRepoImpl
 import com.example.mobileapplication.repository.product.ProductRepoImpl
+import com.example.mobileapplication.utils.LoadingUtils
+import com.example.mobileapplication.viewmodel.AuthViewModel
 import com.example.mobileapplication.viewmodel.CategoryViewModel
+import com.example.mobileapplication.viewmodel.FavouriteViewModel
 import com.example.mobileapplication.viewmodel.ProductViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeFragment : Fragment() {
     lateinit var homeBinding: FragmentHomeBinding
     lateinit var categoryViewModel: CategoryViewModel
+    lateinit var authViewModel: AuthViewModel
     lateinit var productViewModel: ProductViewModel
     lateinit var productUserAdapter: ProductUserAdapter
     lateinit var categoryUserAdapter: CategoryUserAdapter
+    lateinit var favouriteViewModel: FavouriteViewModel
+    lateinit var loadingUtils: LoadingUtils
 
 
     override fun onCreateView(
@@ -47,11 +56,24 @@ class HomeFragment : Fragment() {
         productViewModel=ProductViewModel(productRepo)
         productViewModel.getAllProduct()
 
+        var favRepo=FavRepoImpl()
+        favouriteViewModel= FavouriteViewModel(favRepo)
+        favouriteViewModel.getFavouriteById()
+
+
+        loadingUtils = LoadingUtils(requireActivity())
+
+        authViewModel = AuthViewModel(AuthRepoImpl(FirebaseAuth.getInstance()))
+
+
+
+
 
         productUserAdapter= ProductUserAdapter(
             requireContext(),
-            ArrayList()
+            ArrayList(),authViewModel,favouriteViewModel, loadingUtils
         )
+
 
         categoryUserAdapter= CategoryUserAdapter(
             requireContext(),
@@ -69,6 +91,8 @@ class HomeFragment : Fragment() {
                 categoryUserAdapter.updateData(it)
             }
         }
+
+
 
         homeBinding.recycleViewCategoryUser.apply {
             layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -97,7 +121,6 @@ class HomeFragment : Fragment() {
         }
 
 
+
     }
-
-
 }

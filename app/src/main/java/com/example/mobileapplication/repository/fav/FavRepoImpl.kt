@@ -11,33 +11,72 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class FavRepoImpl : FavRepo {
-    private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private var reference: DatabaseReference = database.reference.child("favourites")
-    override fun id(imageName: String) {
-        TODO("Not yet implemented")
-    }
+    var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    var ref: DatabaseReference = firebaseDatabase.reference.child("favourite")
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    override fun addFavourite(favoriteModel: FavModel, callback: (Boolean, String?) -> Unit) {
+        var id = ref.push().key ?: ""
+        favoriteModel.favid = id
 
-    override fun addFavouriteModel(favModel: FavModel, callback: (Boolean, String?) -> Unit) {
-        val id = reference.push().key.toString()
-        favModel.productId = id
-
-        reference.child(id).setValue(favModel).addOnCompleteListener { res ->
-            if (res.isSuccessful) {
-                callback(true, "Successfully added to favourites")
+        ref.child(id).setValue(favoriteModel).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                callback(true, "Added to Favourite")
             } else {
-                callback(false, "Adding to favourites failed")
+                callback(false, "Unable to add")
             }
         }
     }
 
-    override fun deleteImage(imageName: String, callback: (Boolean, String?) -> Unit) {
-
+    override fun deleteFavourite(favouriteid: String, callback: (Boolean, String?) -> Unit) {
+        ref.child(favouriteid).removeValue().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                callback(true, "deleted successfully")
+            } else {
+                callback(false, "Unable to delete")
+            }
+        }
     }
 
-    override fun updateFavourite(callback: (List<FavModel>?, Boolean, String?) -> Unit) {
+    override fun getFavourite(callback: (List<FavModel>?, Boolean, String?) -> Unit) {
+        val currentUser = auth.currentUser
+        val userId = currentUser?.uid.toString()
 
+        val query = ref.orderByChild("userId").equalTo(userId)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var favouriteList = mutableListOf<FavModel>()
+                for (eachFavourite in snapshot.children) {
+                    var favourite = eachFavourite.getValue(FavModel::class.java)
+                    if(favourite != null){
+                        favouriteList.add(favourite)
+                        Log.d("checkpoint",favourite?.favid.toString())
+                    }
+
+                }
+                callback(favouriteList,true,"Data fetched")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null,false, "${error.message}")
+            }
+        })
     }
 
+    override fun updateFavourite(
+        favouriteid: String,
+        data: MutableMap<String, Any?>,
+        callback: (Boolean, String?) -> Unit
+    ) {
+        data.let { it->
+            ref.child(favouriteid).updateChildren(it).addOnCompleteListener {
+                if(it.isSuccessful){
+                    callback(true,"Successfully updated")
+                }else{
+                    callback(false,"Unable to update data")
+
+                }
+            }
+        }
+    }
 
 }

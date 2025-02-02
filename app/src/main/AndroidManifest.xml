@@ -19,16 +19,6 @@
         android:theme="@style/Theme.MobileApplication"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-            android:name=".ui.activity.PaymentActivity"
-<<<<<<< HEAD
-=======
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.Payment"
->>>>>>> be192153e21b0b4927702232461d801ef4e53e78
-            android:exported="false" />
-=======
             android:name=".ui.activity.BuynowActivity"
             android:exported="true">
         <intent-filter>
@@ -37,7 +27,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
->>>>>>> 16458ab306da90d225a8144a85c4e58af3769f8d
         <activity
             android:name=".ui.fragment.sensorActivity"
             android:exported="false" />
@@ -55,7 +44,13 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.admin.ProductDashboardActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activity.admin.UpdateCategoryActivity"
             android:exported="false" />

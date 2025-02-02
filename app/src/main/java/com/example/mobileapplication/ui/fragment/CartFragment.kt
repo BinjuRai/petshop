@@ -49,11 +49,6 @@ class CartFragment : Fragment() {
         // Initialize adapter with empty data
         cartAdapter = CartAdapter(requireContext(), ArrayList(), cartViewModel)
 
-        sampleCartBinding.buynowbtn.setOnClickListener {
-            Log.d("CartFragment", "Buy Now button clicked")
-            var intent = Intent(requireContext(), BuynowActivity::class.java)
-            startActivity(intent)
-        }
 
         // Observe cart data and update UI
         cartViewModel.cartData.observe(viewLifecycleOwner) { cart ->
